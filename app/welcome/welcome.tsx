@@ -1,3 +1,4 @@
+import { href } from "react-router";
 import logoDark from "./logo-dark.svg";
 import logoLight from "./logo-light.svg";
 
@@ -20,7 +21,7 @@ export function Welcome() {
           </div>
         </header>
         <div className="max-w-[300px] w-full space-y-6 px-4">
-          <nav className="rounded-3xl border border-gray-200 p-6 dark:border-gray-700 space-y-4">
+          <nav className="rounded-3xl border border-gray-300 p-6 dark:border-gray-700 space-y-4">
             <p className="leading-6 text-gray-700 dark:text-gray-200 text-center">
               What&apos;s next?
             </p>
@@ -86,4 +87,44 @@ const resources = [
       </svg>
     ),
   },
+  {
+    href: "http://www.toyotachikuro.jp",
+    text: "有限会社 豊田築炉",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="20"
+        viewBox="0 0 24 20"
+        fill="none"
+        className="stroke-gray-600 group-hover:stroke-current dark:stroke-gray-300"
+      >
+        <path
+          d="M12 1.5C6.20101 1.5 1.5 6.20101 1.5 12C1.5 17.799 6.20101 22.5 12 22.5C17.799 22.5 22.5 17.799 22.5 12C22.5 6.20101 17.799 1.5 12 1.5ZM12 5.5C13.6569 5.5 15 6.84315 15 8.5C15 10.1569 13.6569 11.5 12 11.5C10.3431 11.5 9 10.1569 9 8.5C9 6.84315 10.3431 5.5 12 5.5ZM12 17.5C10.3431 17.5 9 16.1569 9 14.5C9 12.8431 10.3431 11.5 12 11.5C13.6569 11.5 15 12.8431 15 14.5C15 16.1569 13.6569 17.5 12 17.5Z"
+          strokeWidth="1.5"
+        />
+      </svg>
+    ),
+  },
+  {
+    href: "/photo",
+    text: "Photo file manager",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="20"
+        viewBox="0 0 24 20"
+        fill="none"
+        className="stroke-gray-600 group-hover:stroke-current dark:stroke-gray-300"
+      >
+        <path d="M3 3H21V17H3V3Z" strokeWidth="1.5" strokeLinecap="round" />
+        <path
+          d="M9 8C9 8.55228 8.55228 9 8 9C7.44772 9 7 8.55228 7 8C7 7.44772 7.44772 7 8 7C8.55228 7 9 7.44772 9 8Z"
+          strokeWidth="1.5"
+        />
+        <path d="M17 13L15 11L12 14L9 10" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+    ),
+  }
 ];
