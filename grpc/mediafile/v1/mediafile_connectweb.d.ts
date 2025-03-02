@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetCamerasRequest, GetCamerasResponse, GetConfigRequest, GetConfigResponse, GetLogRequest, GetLogsResponse, GetPhotosRequest, GetPhotosResponse, MovePhotosRequest, MovePhotosResponse, SetConfigRequest, SetConfigResponse } from "./mediafile_pb.js";
+import { GetCamerasRequest, GetCamerasResponse, GetConfigRequest, GetConfigResponse, GetLogRequest, GetLogResponse, GetPhotosRequest, GetPhotosResponse, LoadCameraCacheRequest, LoadCameraCacheResponse, LoadConfigRequest, LoadConfigResponse, LoadLogRequest, LoadLogResponse, LoadPhotoCacheRequest, LoadPhotoCacheResponse, MovePhotosRequest, MovePhotosResponse, SaveCameraCacheRequest, SaveCameraCacheResponse, SaveConfigRequest, SaveConfigResponse, SaveLogRequest, SaveLogResponse, SavePhotoCacheRequest, SavePhotoCacheResponse, SetConfigRequest, SetConfigResponse } from "./mediafile_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -14,6 +14,94 @@ import { MethodKind } from "@bufbuild/protobuf";
 export declare const MediafileService: {
   readonly typeName: "mediafile.v1.MediafileService",
   readonly methods: {
+    /**
+     * コンフィギュレーションを保存します。
+     *
+     * @generated from rpc mediafile.v1.MediafileService.SaveConfig
+     */
+    readonly saveConfig: {
+      readonly name: "SaveConfig",
+      readonly I: typeof SaveConfigRequest,
+      readonly O: typeof SaveConfigResponse,
+      readonly kind: MethodKind.Unary,
+    },
+    /**
+     * コンフィギュレーションを読み込みます。
+     *
+     * @generated from rpc mediafile.v1.MediafileService.LoadConfig
+     */
+    readonly loadConfig: {
+      readonly name: "LoadConfig",
+      readonly I: typeof LoadConfigRequest,
+      readonly O: typeof LoadConfigResponse,
+      readonly kind: MethodKind.Unary,
+    },
+    /**
+     * 写真のキャッシュ情報を保存します。
+     *
+     * @generated from rpc mediafile.v1.MediafileService.SavePhotoCache
+     */
+    readonly savePhotoCache: {
+      readonly name: "SavePhotoCache",
+      readonly I: typeof SavePhotoCacheRequest,
+      readonly O: typeof SavePhotoCacheResponse,
+      readonly kind: MethodKind.Unary,
+    },
+    /**
+     * 写真のキャッシュ情報を読み込みます。
+     *
+     * @generated from rpc mediafile.v1.MediafileService.LoadPhotoCache
+     */
+    readonly loadPhotoCache: {
+      readonly name: "LoadPhotoCache",
+      readonly I: typeof LoadPhotoCacheRequest,
+      readonly O: typeof LoadPhotoCacheResponse,
+      readonly kind: MethodKind.Unary,
+    },
+    /**
+     * カメラのキャッシュ情報を保存します。
+     *
+     * @generated from rpc mediafile.v1.MediafileService.SaveCameraCache
+     */
+    readonly saveCameraCache: {
+      readonly name: "SaveCameraCache",
+      readonly I: typeof SaveCameraCacheRequest,
+      readonly O: typeof SaveCameraCacheResponse,
+      readonly kind: MethodKind.Unary,
+    },
+    /**
+     * カメラのキャッシュ情報を読み込みます。
+     *
+     * @generated from rpc mediafile.v1.MediafileService.LoadCameraCache
+     */
+    readonly loadCameraCache: {
+      readonly name: "LoadCameraCache",
+      readonly I: typeof LoadCameraCacheRequest,
+      readonly O: typeof LoadCameraCacheResponse,
+      readonly kind: MethodKind.Unary,
+    },
+    /**
+     * ログを存します。
+     *
+     * @generated from rpc mediafile.v1.MediafileService.SaveLog
+     */
+    readonly saveLog: {
+      readonly name: "SaveLog",
+      readonly I: typeof SaveLogRequest,
+      readonly O: typeof SaveLogResponse,
+      readonly kind: MethodKind.Unary,
+    },
+    /**
+     * ログを読み込みます。
+     *
+     * @generated from rpc mediafile.v1.MediafileService.LoadLog
+     */
+    readonly loadLog: {
+      readonly name: "LoadLog",
+      readonly I: typeof LoadLogRequest,
+      readonly O: typeof LoadLogResponse,
+      readonly kind: MethodKind.Unary,
+    },
     /**
      * コンフィギュレーションを取得します。
      *
@@ -72,12 +160,12 @@ export declare const MediafileService: {
     /**
      * ログを取得します。
      *
-     * @generated from rpc mediafile.v1.MediafileService.GetLogs
+     * @generated from rpc mediafile.v1.MediafileService.GetLog
      */
-    readonly getLogs: {
-      readonly name: "GetLogs",
+    readonly getLog: {
+      readonly name: "GetLog",
       readonly I: typeof GetLogRequest,
-      readonly O: typeof GetLogsResponse,
+      readonly O: typeof GetLogResponse,
       readonly kind: MethodKind.Unary,
     },
   }

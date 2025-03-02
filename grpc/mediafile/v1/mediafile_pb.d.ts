@@ -11,6 +11,262 @@ import type { Message } from "@bufbuild/protobuf";
 export declare const file_mediafile_v1_mediafile: GenFile;
 
 /**
+ * @generated from message mediafile.v1.SaveConfigRequest
+ */
+export declare type SaveConfigRequest = Message<"mediafile.v1.SaveConfigRequest"> & {
+  /**
+   * @generated from field: mediafile.v1.Mode mode = 1;
+   */
+  mode: Mode;
+};
+
+/**
+ * Describes the message mediafile.v1.SaveConfigRequest.
+ * Use `create(SaveConfigRequestSchema)` to create a new message.
+ */
+export declare const SaveConfigRequestSchema: GenMessage<SaveConfigRequest>;
+
+/**
+ * @generated from message mediafile.v1.SaveConfigResponse
+ */
+export declare type SaveConfigResponse = Message<"mediafile.v1.SaveConfigResponse"> & {
+  /**
+   * @generated from field: bool success = 1;
+   */
+  success: boolean;
+};
+
+/**
+ * Describes the message mediafile.v1.SaveConfigResponse.
+ * Use `create(SaveConfigResponseSchema)` to create a new message.
+ */
+export declare const SaveConfigResponseSchema: GenMessage<SaveConfigResponse>;
+
+/**
+ * @generated from message mediafile.v1.LoadConfigRequest
+ */
+export declare type LoadConfigRequest = Message<"mediafile.v1.LoadConfigRequest"> & {
+  /**
+   * @generated from field: mediafile.v1.Mode mode = 1;
+   */
+  mode: Mode;
+};
+
+/**
+ * Describes the message mediafile.v1.LoadConfigRequest.
+ * Use `create(LoadConfigRequestSchema)` to create a new message.
+ */
+export declare const LoadConfigRequestSchema: GenMessage<LoadConfigRequest>;
+
+/**
+ * @generated from message mediafile.v1.LoadConfigResponse
+ */
+export declare type LoadConfigResponse = Message<"mediafile.v1.LoadConfigResponse"> & {
+  /**
+   * @generated from field: bool success = 1;
+   */
+  success: boolean;
+};
+
+/**
+ * Describes the message mediafile.v1.LoadConfigResponse.
+ * Use `create(LoadConfigResponseSchema)` to create a new message.
+ */
+export declare const LoadConfigResponseSchema: GenMessage<LoadConfigResponse>;
+
+/**
+ * @generated from message mediafile.v1.SavePhotoCacheRequest
+ */
+export declare type SavePhotoCacheRequest = Message<"mediafile.v1.SavePhotoCacheRequest"> & {
+  /**
+   * @generated from field: mediafile.v1.Mode mode = 1;
+   */
+  mode: Mode;
+};
+
+/**
+ * Describes the message mediafile.v1.SavePhotoCacheRequest.
+ * Use `create(SavePhotoCacheRequestSchema)` to create a new message.
+ */
+export declare const SavePhotoCacheRequestSchema: GenMessage<SavePhotoCacheRequest>;
+
+/**
+ * @generated from message mediafile.v1.SavePhotoCacheResponse
+ */
+export declare type SavePhotoCacheResponse = Message<"mediafile.v1.SavePhotoCacheResponse"> & {
+  /**
+   * @generated from field: bool success = 1;
+   */
+  success: boolean;
+};
+
+/**
+ * Describes the message mediafile.v1.SavePhotoCacheResponse.
+ * Use `create(SavePhotoCacheResponseSchema)` to create a new message.
+ */
+export declare const SavePhotoCacheResponseSchema: GenMessage<SavePhotoCacheResponse>;
+
+/**
+ * @generated from message mediafile.v1.LoadPhotoCacheRequest
+ */
+export declare type LoadPhotoCacheRequest = Message<"mediafile.v1.LoadPhotoCacheRequest"> & {
+  /**
+   * @generated from field: mediafile.v1.Mode mode = 1;
+   */
+  mode: Mode;
+};
+
+/**
+ * Describes the message mediafile.v1.LoadPhotoCacheRequest.
+ * Use `create(LoadPhotoCacheRequestSchema)` to create a new message.
+ */
+export declare const LoadPhotoCacheRequestSchema: GenMessage<LoadPhotoCacheRequest>;
+
+/**
+ * @generated from message mediafile.v1.LoadPhotoCacheResponse
+ */
+export declare type LoadPhotoCacheResponse = Message<"mediafile.v1.LoadPhotoCacheResponse"> & {
+  /**
+   * @generated from field: bool success = 1;
+   */
+  success: boolean;
+};
+
+/**
+ * Describes the message mediafile.v1.LoadPhotoCacheResponse.
+ * Use `create(LoadPhotoCacheResponseSchema)` to create a new message.
+ */
+export declare const LoadPhotoCacheResponseSchema: GenMessage<LoadPhotoCacheResponse>;
+
+/**
+ * @generated from message mediafile.v1.SaveCameraCacheRequest
+ */
+export declare type SaveCameraCacheRequest = Message<"mediafile.v1.SaveCameraCacheRequest"> & {
+  /**
+   * @generated from field: mediafile.v1.Mode mode = 1;
+   */
+  mode: Mode;
+};
+
+/**
+ * Describes the message mediafile.v1.SaveCameraCacheRequest.
+ * Use `create(SaveCameraCacheRequestSchema)` to create a new message.
+ */
+export declare const SaveCameraCacheRequestSchema: GenMessage<SaveCameraCacheRequest>;
+
+/**
+ * @generated from message mediafile.v1.SaveCameraCacheResponse
+ */
+export declare type SaveCameraCacheResponse = Message<"mediafile.v1.SaveCameraCacheResponse"> & {
+  /**
+   * @generated from field: bool success = 1;
+   */
+  success: boolean;
+};
+
+/**
+ * Describes the message mediafile.v1.SaveCameraCacheResponse.
+ * Use `create(SaveCameraCacheResponseSchema)` to create a new message.
+ */
+export declare const SaveCameraCacheResponseSchema: GenMessage<SaveCameraCacheResponse>;
+
+/**
+ * @generated from message mediafile.v1.LoadCameraCacheRequest
+ */
+export declare type LoadCameraCacheRequest = Message<"mediafile.v1.LoadCameraCacheRequest"> & {
+  /**
+   * @generated from field: mediafile.v1.Mode mode = 1;
+   */
+  mode: Mode;
+};
+
+/**
+ * Describes the message mediafile.v1.LoadCameraCacheRequest.
+ * Use `create(LoadCameraCacheRequestSchema)` to create a new message.
+ */
+export declare const LoadCameraCacheRequestSchema: GenMessage<LoadCameraCacheRequest>;
+
+/**
+ * @generated from message mediafile.v1.LoadCameraCacheResponse
+ */
+export declare type LoadCameraCacheResponse = Message<"mediafile.v1.LoadCameraCacheResponse"> & {
+  /**
+   * @generated from field: bool success = 1;
+   */
+  success: boolean;
+};
+
+/**
+ * Describes the message mediafile.v1.LoadCameraCacheResponse.
+ * Use `create(LoadCameraCacheResponseSchema)` to create a new message.
+ */
+export declare const LoadCameraCacheResponseSchema: GenMessage<LoadCameraCacheResponse>;
+
+/**
+ * @generated from message mediafile.v1.SaveLogRequest
+ */
+export declare type SaveLogRequest = Message<"mediafile.v1.SaveLogRequest"> & {
+  /**
+   * @generated from field: mediafile.v1.Mode mode = 1;
+   */
+  mode: Mode;
+};
+
+/**
+ * Describes the message mediafile.v1.SaveLogRequest.
+ * Use `create(SaveLogRequestSchema)` to create a new message.
+ */
+export declare const SaveLogRequestSchema: GenMessage<SaveLogRequest>;
+
+/**
+ * @generated from message mediafile.v1.SaveLogResponse
+ */
+export declare type SaveLogResponse = Message<"mediafile.v1.SaveLogResponse"> & {
+  /**
+   * @generated from field: bool success = 1;
+   */
+  success: boolean;
+};
+
+/**
+ * Describes the message mediafile.v1.SaveLogResponse.
+ * Use `create(SaveLogResponseSchema)` to create a new message.
+ */
+export declare const SaveLogResponseSchema: GenMessage<SaveLogResponse>;
+
+/**
+ * @generated from message mediafile.v1.LoadLogRequest
+ */
+export declare type LoadLogRequest = Message<"mediafile.v1.LoadLogRequest"> & {
+  /**
+   * @generated from field: mediafile.v1.Mode mode = 1;
+   */
+  mode: Mode;
+};
+
+/**
+ * Describes the message mediafile.v1.LoadLogRequest.
+ * Use `create(LoadLogRequestSchema)` to create a new message.
+ */
+export declare const LoadLogRequestSchema: GenMessage<LoadLogRequest>;
+
+/**
+ * @generated from message mediafile.v1.LoadLogResponse
+ */
+export declare type LoadLogResponse = Message<"mediafile.v1.LoadLogResponse"> & {
+  /**
+   * @generated from field: bool success = 1;
+   */
+  success: boolean;
+};
+
+/**
+ * Describes the message mediafile.v1.LoadLogResponse.
+ * Use `create(LoadLogResponseSchema)` to create a new message.
+ */
+export declare const LoadLogResponseSchema: GenMessage<LoadLogResponse>;
+
+/**
  * タイムゾーン保持可能な日時メッセージです。
  *
  * @generated from message mediafile.v1.Instant
@@ -229,11 +485,11 @@ export declare type Photo = Message<"mediafile.v1.Photo"> & {
   metadata?: Metadata;
 
   /**
-   * 生成されたファイル名（推奨ファイル名）
+   * 推奨フルパス
    *
-   * @generated from field: string generated_filename = 5;
+   * @generated from field: string recommended_path = 5;
    */
-  generatedFilename: string;
+  recommendedPath: string;
 };
 
 /**
@@ -315,14 +571,14 @@ export declare const GetPhotosResponseSchema: GenMessage<GetPhotosResponse>;
  */
 export declare type MovePhotosRequest = Message<"mediafile.v1.MovePhotosRequest"> & {
   /**
-   * @generated from field: string destination_directory = 1;
+   * @generated from field: mediafile.v1.Mode mode = 1;
    */
-  destinationDirectory: string;
+  mode: Mode;
 
   /**
-   * @generated from field: repeated mediafile.v1.Photo photos = 2;
+   * @generated from field: repeated string ids = 2;
    */
-  photos: Photo[];
+  ids: string[];
 };
 
 /**
@@ -370,9 +626,9 @@ export declare const PhotoListSchema: GenMessage<PhotoList>;
  */
 export declare type PhotoMap = Message<"mediafile.v1.PhotoMap"> & {
   /**
-   * @generated from field: map<string, mediafile.v1.Photo> key_id = 1;
+   * @generated from field: map<string, mediafile.v1.Photo> by_id = 1;
    */
-  keyId: { [key: string]: Photo };
+  byId: { [key: string]: Photo };
 };
 
 /**
@@ -534,9 +790,9 @@ export declare const LogSchema: GenMessage<Log>;
  */
 export declare type LogList = Message<"mediafile.v1.LogList"> & {
   /**
-   * @generated from field: repeated mediafile.v1.Log logs = 1;
+   * @generated from field: repeated mediafile.v1.Log log = 1;
    */
-  logs: Log[];
+  log: Log[];
 };
 
 /**
@@ -564,20 +820,20 @@ export declare type GetLogRequest = Message<"mediafile.v1.GetLogRequest"> & {
 export declare const GetLogRequestSchema: GenMessage<GetLogRequest>;
 
 /**
- * @generated from message mediafile.v1.GetLogsResponse
+ * @generated from message mediafile.v1.GetLogResponse
  */
-export declare type GetLogsResponse = Message<"mediafile.v1.GetLogsResponse"> & {
+export declare type GetLogResponse = Message<"mediafile.v1.GetLogResponse"> & {
   /**
-   * @generated from field: repeated mediafile.v1.Log logs = 1;
+   * @generated from field: repeated mediafile.v1.Log log = 1;
    */
-  logs: Log[];
+  log: Log[];
 };
 
 /**
- * Describes the message mediafile.v1.GetLogsResponse.
- * Use `create(GetLogsResponseSchema)` to create a new message.
+ * Describes the message mediafile.v1.GetLogResponse.
+ * Use `create(GetLogResponseSchema)` to create a new message.
  */
-export declare const GetLogsResponseSchema: GenMessage<GetLogsResponse>;
+export declare const GetLogResponseSchema: GenMessage<GetLogResponse>;
 
 /**
  * 各種モードの列挙型です。
@@ -623,6 +879,86 @@ export declare const ModeSchema: GenEnum<Mode>;
  * @generated from service mediafile.v1.MediafileService
  */
 export declare const MediafileService: GenService<{
+  /**
+   * コンフィギュレーションを保存します。
+   *
+   * @generated from rpc mediafile.v1.MediafileService.SaveConfig
+   */
+  saveConfig: {
+    methodKind: "unary";
+    input: typeof SaveConfigRequestSchema;
+    output: typeof SaveConfigResponseSchema;
+  },
+  /**
+   * コンフィギュレーションを読み込みます。
+   *
+   * @generated from rpc mediafile.v1.MediafileService.LoadConfig
+   */
+  loadConfig: {
+    methodKind: "unary";
+    input: typeof LoadConfigRequestSchema;
+    output: typeof LoadConfigResponseSchema;
+  },
+  /**
+   * 写真のキャッシュ情報を保存します。
+   *
+   * @generated from rpc mediafile.v1.MediafileService.SavePhotoCache
+   */
+  savePhotoCache: {
+    methodKind: "unary";
+    input: typeof SavePhotoCacheRequestSchema;
+    output: typeof SavePhotoCacheResponseSchema;
+  },
+  /**
+   * 写真のキャッシュ情報を読み込みます。
+   *
+   * @generated from rpc mediafile.v1.MediafileService.LoadPhotoCache
+   */
+  loadPhotoCache: {
+    methodKind: "unary";
+    input: typeof LoadPhotoCacheRequestSchema;
+    output: typeof LoadPhotoCacheResponseSchema;
+  },
+  /**
+   * カメラのキャッシュ情報を保存します。
+   *
+   * @generated from rpc mediafile.v1.MediafileService.SaveCameraCache
+   */
+  saveCameraCache: {
+    methodKind: "unary";
+    input: typeof SaveCameraCacheRequestSchema;
+    output: typeof SaveCameraCacheResponseSchema;
+  },
+  /**
+   * カメラのキャッシュ情報を読み込みます。
+   *
+   * @generated from rpc mediafile.v1.MediafileService.LoadCameraCache
+   */
+  loadCameraCache: {
+    methodKind: "unary";
+    input: typeof LoadCameraCacheRequestSchema;
+    output: typeof LoadCameraCacheResponseSchema;
+  },
+  /**
+   * ログを存します。
+   *
+   * @generated from rpc mediafile.v1.MediafileService.SaveLog
+   */
+  saveLog: {
+    methodKind: "unary";
+    input: typeof SaveLogRequestSchema;
+    output: typeof SaveLogResponseSchema;
+  },
+  /**
+   * ログを読み込みます。
+   *
+   * @generated from rpc mediafile.v1.MediafileService.LoadLog
+   */
+  loadLog: {
+    methodKind: "unary";
+    input: typeof LoadLogRequestSchema;
+    output: typeof LoadLogResponseSchema;
+  },
   /**
    * コンフィギュレーションを取得します。
    *
@@ -676,12 +1012,12 @@ export declare const MediafileService: GenService<{
   /**
    * ログを取得します。
    *
-   * @generated from rpc mediafile.v1.MediafileService.GetLogs
+   * @generated from rpc mediafile.v1.MediafileService.GetLog
    */
-  getLogs: {
+  getLog: {
     methodKind: "unary";
     input: typeof GetLogRequestSchema;
-    output: typeof GetLogsResponseSchema;
+    output: typeof GetLogResponseSchema;
   },
 }>;
 

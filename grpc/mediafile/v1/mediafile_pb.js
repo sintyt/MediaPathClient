@@ -8,168 +8,280 @@ import { enumDesc, fileDesc, messageDesc, serviceDesc, tsEnum } from "@bufbuild/
  * Describes the file mediafile/v1/mediafile.proto.
  */
 export const file_mediafile_v1_mediafile = /*@__PURE__*/
-  fileDesc("ChxtZWRpYWZpbGUvdjEvbWVkaWFmaWxlLnByb3RvEgxtZWRpYWZpbGUudjEiQgoHSW5zdGFudBIPCgdzZWNvbmRzGAEgASgDEg0KBW5hbm9zGAIgASgNEhcKD3RpbWV6b25lX29mZnNldBgDIAEoBSLIAQoGQ29uZmlnEhIKCnNlcnZlcl91cmwYASABKAkSEwoLY29uZmlnX3BhdGgYAiABKAkSGQoRcGhvdG9fZGlzdGluYXRpb24YAyABKAkSHAoUcGhvdG9maWxlX2V4dGVuc2lvbnMYBCADKAkSGAoQcGhvdG9fY2FjaGVfcGF0aBgFIAEoCRIZChFjYW1lcmFfY2FjaGVfcGF0aBgGIAEoCRIQCghsb2dfcGF0aBgHIAEoCRIVCg1waG90b19zb3VyY2VzGAggAygJIloKEFNldENvbmZpZ1JlcXVlc3QSIAoEbW9kZRgBIAEoDjISLm1lZGlhZmlsZS52MS5Nb2RlEiQKBmNvbmZpZxgCIAEoCzIULm1lZGlhZmlsZS52MS5Db25maWciJAoRU2V0Q29uZmlnUmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCCI0ChBHZXRDb25maWdSZXF1ZXN0EiAKBG1vZGUYASABKA4yEi5tZWRpYWZpbGUudjEuTW9kZSI5ChFHZXRDb25maWdSZXNwb25zZRIkCgZjb25maWcYASABKAsyFC5tZWRpYWZpbGUudjEuQ29uZmlnIn4KBVBob3RvEgoKAmlkGAEgASgJEhAKCGZ1bGxwYXRoGAIgASgJEhEKCWZpbGVfc2l6ZRgDIAEoBBIoCghtZXRhZGF0YRgEIAEoCzIWLm1lZGlhZmlsZS52MS5NZXRhZGF0YRIaChJnZW5lcmF0ZWRfZmlsZW5hbWUYBSABKAkiUAoITWV0YWRhdGESJgoHc2hvdF9hdBgBIAEoCzIVLm1lZGlhZmlsZS52MS5JbnN0YW50Eg0KBW1ha2VyGAIgASgJEg0KBW1vZGVsGAMgASgJIjQKEEdldFBob3Rvc1JlcXVlc3QSIAoEbW9kZRgBIAEoDjISLm1lZGlhZmlsZS52MS5Nb2RlIjgKEUdldFBob3Rvc1Jlc3BvbnNlEiMKBnBob3RvcxgBIAMoCzITLm1lZGlhZmlsZS52MS5QaG90byJXChFNb3ZlUGhvdG9zUmVxdWVzdBIdChVkZXN0aW5hdGlvbl9kaXJlY3RvcnkYASABKAkSIwoGcGhvdG9zGAIgAygLMhMubWVkaWFmaWxlLnYxLlBob3RvIiUKEk1vdmVQaG90b3NSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIIjAKCVBob3RvTGlzdBIjCgZwaG90b3MYASADKAsyEy5tZWRpYWZpbGUudjEuUGhvdG8igAEKCFBob3RvTWFwEjEKBmtleV9pZBgBIAMoCzIhLm1lZGlhZmlsZS52MS5QaG90b01hcC5LZXlJZEVudHJ5GkEKCktleUlkRW50cnkSCwoDa2V5GAEgASgJEiIKBXZhbHVlGAIgASgLMhMubWVkaWFmaWxlLnYxLlBob3RvOgI4ASKbAQoGQ2FtZXJhEg0KBW1ha2VyGAEgASgJEg0KBW1vZGVsGAIgASgJEg0KBWxhYmVsGAMgASgJEhMKC3Bob3RvX2NvdW50GAQgASgFEicKCGZpcnN0X2F0GAUgASgLMhUubWVkaWFmaWxlLnYxLkluc3RhbnQSJgoHbGFzdF9hdBgGIAEoCzIVLm1lZGlhZmlsZS52MS5JbnN0YW50IjUKEUdldENhbWVyYXNSZXF1ZXN0EiAKBG1vZGUYASABKA4yEi5tZWRpYWZpbGUudjEuTW9kZSJBChJHZXRDYW1lcmFzUmVzcG9uc2USKwoKY2FtZXJhX21hcBgBIAEoCzIXLm1lZGlhZmlsZS52MS5DYW1lcmFNYXAiiQEKCUNhbWVyYU1hcBI2CghieV9tb2RlbBgBIAMoCzIkLm1lZGlhZmlsZS52MS5DYW1lcmFNYXAuQnlNb2RlbEVudHJ5GkQKDEJ5TW9kZWxFbnRyeRILCgNrZXkYASABKAkSIwoFdmFsdWUYAiABKAsyFC5tZWRpYWZpbGUudjEuQ2FtZXJhOgI4ASIzCgpDYW1lcmFMaXN0EiUKB2NhbWVyYXMYASADKAsyFC5tZWRpYWZpbGUudjEuQ2FtZXJhIkEKA0xvZxIpCgpjcmVhdGVkX2F0GAEgASgLMhUubWVkaWFmaWxlLnYxLkluc3RhbnQSDwoHbWVzc2FnZRgCIAEoCSIqCgdMb2dMaXN0Eh8KBGxvZ3MYASADKAsyES5tZWRpYWZpbGUudjEuTG9nIjEKDUdldExvZ1JlcXVlc3QSIAoEbW9kZRgBIAEoDjISLm1lZGlhZmlsZS52MS5Nb2RlIjIKD0dldExvZ3NSZXNwb25zZRIfCgRsb2dzGAEgAygLMhEubWVkaWFmaWxlLnYxLkxvZypKCgRNb2RlEhQKEE1PREVfVU5TUEVDSUZJRUQQABINCglNT0RFX0ZJTEUQARIOCgpNT0RFX0NBQ0hFEAISDQoJTU9ERV9URVNUEAMy5QMKEE1lZGlhZmlsZVNlcnZpY2USTAoJU2V0Q29uZmlnEh4ubWVkaWFmaWxlLnYxLlNldENvbmZpZ1JlcXVlc3QaHy5tZWRpYWZpbGUudjEuU2V0Q29uZmlnUmVzcG9uc2USTAoJR2V0Q29uZmlnEh4ubWVkaWFmaWxlLnYxLkdldENvbmZpZ1JlcXVlc3QaHy5tZWRpYWZpbGUudjEuR2V0Q29uZmlnUmVzcG9uc2USTAoJR2V0UGhvdG9zEh4ubWVkaWFmaWxlLnYxLkdldFBob3Rvc1JlcXVlc3QaHy5tZWRpYWZpbGUudjEuR2V0UGhvdG9zUmVzcG9uc2USTwoKTW92ZVBob3RvcxIfLm1lZGlhZmlsZS52MS5Nb3ZlUGhvdG9zUmVxdWVzdBogLm1lZGlhZmlsZS52MS5Nb3ZlUGhvdG9zUmVzcG9uc2USTwoKR2V0Q2FtZXJhcxIfLm1lZGlhZmlsZS52MS5HZXRDYW1lcmFzUmVxdWVzdBogLm1lZGlhZmlsZS52MS5HZXRDYW1lcmFzUmVzcG9uc2USRQoHR2V0TG9ncxIbLm1lZGlhZmlsZS52MS5HZXRMb2dSZXF1ZXN0Gh0ubWVkaWFmaWxlLnYxLkdldExvZ3NSZXNwb25zZUJzChBjb20ubWVkaWFmaWxlLnYxQg5NZWRpYWZpbGVQcm90b1ABogIDTVhYqgIMTWVkaWFmaWxlLlYxygIMTWVkaWFmaWxlXFYx4gIYTWVkaWFmaWxlXFYxXEdQQk1ldGFkYXRh6gINTWVkaWFmaWxlOjpWMWIGcHJvdG8z");
+  fileDesc("ChxtZWRpYWZpbGUvdjEvbWVkaWFmaWxlLnByb3RvEgxtZWRpYWZpbGUudjEiNQoRU2F2ZUNvbmZpZ1JlcXVlc3QSIAoEbW9kZRgBIAEoDjISLm1lZGlhZmlsZS52MS5Nb2RlIiUKElNhdmVDb25maWdSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIIjUKEUxvYWRDb25maWdSZXF1ZXN0EiAKBG1vZGUYASABKA4yEi5tZWRpYWZpbGUudjEuTW9kZSIlChJMb2FkQ29uZmlnUmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCCI5ChVTYXZlUGhvdG9DYWNoZVJlcXVlc3QSIAoEbW9kZRgBIAEoDjISLm1lZGlhZmlsZS52MS5Nb2RlIikKFlNhdmVQaG90b0NhY2hlUmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCCI5ChVMb2FkUGhvdG9DYWNoZVJlcXVlc3QSIAoEbW9kZRgBIAEoDjISLm1lZGlhZmlsZS52MS5Nb2RlIikKFkxvYWRQaG90b0NhY2hlUmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCCI6ChZTYXZlQ2FtZXJhQ2FjaGVSZXF1ZXN0EiAKBG1vZGUYASABKA4yEi5tZWRpYWZpbGUudjEuTW9kZSIqChdTYXZlQ2FtZXJhQ2FjaGVSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIIjoKFkxvYWRDYW1lcmFDYWNoZVJlcXVlc3QSIAoEbW9kZRgBIAEoDjISLm1lZGlhZmlsZS52MS5Nb2RlIioKF0xvYWRDYW1lcmFDYWNoZVJlc3BvbnNlEg8KB3N1Y2Nlc3MYASABKAgiMgoOU2F2ZUxvZ1JlcXVlc3QSIAoEbW9kZRgBIAEoDjISLm1lZGlhZmlsZS52MS5Nb2RlIiIKD1NhdmVMb2dSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIIjIKDkxvYWRMb2dSZXF1ZXN0EiAKBG1vZGUYASABKA4yEi5tZWRpYWZpbGUudjEuTW9kZSIiCg9Mb2FkTG9nUmVzcG9uc2USDwoHc3VjY2VzcxgBIAEoCCJCCgdJbnN0YW50Eg8KB3NlY29uZHMYASABKAMSDQoFbmFub3MYAiABKA0SFwoPdGltZXpvbmVfb2Zmc2V0GAMgASgFIsgBCgZDb25maWcSEgoKc2VydmVyX3VybBgBIAEoCRITCgtjb25maWdfcGF0aBgCIAEoCRIZChFwaG90b19kaXN0aW5hdGlvbhgDIAEoCRIcChRwaG90b2ZpbGVfZXh0ZW5zaW9ucxgEIAMoCRIYChBwaG90b19jYWNoZV9wYXRoGAUgASgJEhkKEWNhbWVyYV9jYWNoZV9wYXRoGAYgASgJEhAKCGxvZ19wYXRoGAcgASgJEhUKDXBob3RvX3NvdXJjZXMYCCADKAkiWgoQU2V0Q29uZmlnUmVxdWVzdBIgCgRtb2RlGAEgASgOMhIubWVkaWFmaWxlLnYxLk1vZGUSJAoGY29uZmlnGAIgASgLMhQubWVkaWFmaWxlLnYxLkNvbmZpZyIkChFTZXRDb25maWdSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIIjQKEEdldENvbmZpZ1JlcXVlc3QSIAoEbW9kZRgBIAEoDjISLm1lZGlhZmlsZS52MS5Nb2RlIjkKEUdldENvbmZpZ1Jlc3BvbnNlEiQKBmNvbmZpZxgBIAEoCzIULm1lZGlhZmlsZS52MS5Db25maWcifAoFUGhvdG8SCgoCaWQYASABKAkSEAoIZnVsbHBhdGgYAiABKAkSEQoJZmlsZV9zaXplGAMgASgEEigKCG1ldGFkYXRhGAQgASgLMhYubWVkaWFmaWxlLnYxLk1ldGFkYXRhEhgKEHJlY29tbWVuZGVkX3BhdGgYBSABKAkiUAoITWV0YWRhdGESJgoHc2hvdF9hdBgBIAEoCzIVLm1lZGlhZmlsZS52MS5JbnN0YW50Eg0KBW1ha2VyGAIgASgJEg0KBW1vZGVsGAMgASgJIjQKEEdldFBob3Rvc1JlcXVlc3QSIAoEbW9kZRgBIAEoDjISLm1lZGlhZmlsZS52MS5Nb2RlIjgKEUdldFBob3Rvc1Jlc3BvbnNlEiMKBnBob3RvcxgBIAMoCzITLm1lZGlhZmlsZS52MS5QaG90byJCChFNb3ZlUGhvdG9zUmVxdWVzdBIgCgRtb2RlGAEgASgOMhIubWVkaWFmaWxlLnYxLk1vZGUSCwoDaWRzGAIgAygJIiUKEk1vdmVQaG90b3NSZXNwb25zZRIPCgdzdWNjZXNzGAEgASgIIjAKCVBob3RvTGlzdBIjCgZwaG90b3MYASADKAsyEy5tZWRpYWZpbGUudjEuUGhvdG8ifQoIUGhvdG9NYXASLwoFYnlfaWQYASADKAsyIC5tZWRpYWZpbGUudjEuUGhvdG9NYXAuQnlJZEVudHJ5GkAKCUJ5SWRFbnRyeRILCgNrZXkYASABKAkSIgoFdmFsdWUYAiABKAsyEy5tZWRpYWZpbGUudjEuUGhvdG86AjgBIpsBCgZDYW1lcmESDQoFbWFrZXIYASABKAkSDQoFbW9kZWwYAiABKAkSDQoFbGFiZWwYAyABKAkSEwoLcGhvdG9fY291bnQYBCABKAUSJwoIZmlyc3RfYXQYBSABKAsyFS5tZWRpYWZpbGUudjEuSW5zdGFudBImCgdsYXN0X2F0GAYgASgLMhUubWVkaWFmaWxlLnYxLkluc3RhbnQiNQoRR2V0Q2FtZXJhc1JlcXVlc3QSIAoEbW9kZRgBIAEoDjISLm1lZGlhZmlsZS52MS5Nb2RlIkEKEkdldENhbWVyYXNSZXNwb25zZRIrCgpjYW1lcmFfbWFwGAEgASgLMhcubWVkaWFmaWxlLnYxLkNhbWVyYU1hcCKJAQoJQ2FtZXJhTWFwEjYKCGJ5X21vZGVsGAEgAygLMiQubWVkaWFmaWxlLnYxLkNhbWVyYU1hcC5CeU1vZGVsRW50cnkaRAoMQnlNb2RlbEVudHJ5EgsKA2tleRgBIAEoCRIjCgV2YWx1ZRgCIAEoCzIULm1lZGlhZmlsZS52MS5DYW1lcmE6AjgBIjMKCkNhbWVyYUxpc3QSJQoHY2FtZXJhcxgBIAMoCzIULm1lZGlhZmlsZS52MS5DYW1lcmEiQQoDTG9nEikKCmNyZWF0ZWRfYXQYASABKAsyFS5tZWRpYWZpbGUudjEuSW5zdGFudBIPCgdtZXNzYWdlGAIgASgJIikKB0xvZ0xpc3QSHgoDbG9nGAEgAygLMhEubWVkaWFmaWxlLnYxLkxvZyIxCg1HZXRMb2dSZXF1ZXN0EiAKBG1vZGUYASABKA4yEi5tZWRpYWZpbGUudjEuTW9kZSIwCg5HZXRMb2dSZXNwb25zZRIeCgNsb2cYASADKAsyES5tZWRpYWZpbGUudjEuTG9nKkoKBE1vZGUSFAoQTU9ERV9VTlNQRUNJRklFRBAAEg0KCU1PREVfRklMRRABEg4KCk1PREVfQ0FDSEUQAhINCglNT0RFX1RFU1QQAzKPCQoQTWVkaWFmaWxlU2VydmljZRJPCgpTYXZlQ29uZmlnEh8ubWVkaWFmaWxlLnYxLlNhdmVDb25maWdSZXF1ZXN0GiAubWVkaWFmaWxlLnYxLlNhdmVDb25maWdSZXNwb25zZRJPCgpMb2FkQ29uZmlnEh8ubWVkaWFmaWxlLnYxLkxvYWRDb25maWdSZXF1ZXN0GiAubWVkaWFmaWxlLnYxLkxvYWRDb25maWdSZXNwb25zZRJbCg5TYXZlUGhvdG9DYWNoZRIjLm1lZGlhZmlsZS52MS5TYXZlUGhvdG9DYWNoZVJlcXVlc3QaJC5tZWRpYWZpbGUudjEuU2F2ZVBob3RvQ2FjaGVSZXNwb25zZRJbCg5Mb2FkUGhvdG9DYWNoZRIjLm1lZGlhZmlsZS52MS5Mb2FkUGhvdG9DYWNoZVJlcXVlc3QaJC5tZWRpYWZpbGUudjEuTG9hZFBob3RvQ2FjaGVSZXNwb25zZRJeCg9TYXZlQ2FtZXJhQ2FjaGUSJC5tZWRpYWZpbGUudjEuU2F2ZUNhbWVyYUNhY2hlUmVxdWVzdBolLm1lZGlhZmlsZS52MS5TYXZlQ2FtZXJhQ2FjaGVSZXNwb25zZRJeCg9Mb2FkQ2FtZXJhQ2FjaGUSJC5tZWRpYWZpbGUudjEuTG9hZENhbWVyYUNhY2hlUmVxdWVzdBolLm1lZGlhZmlsZS52MS5Mb2FkQ2FtZXJhQ2FjaGVSZXNwb25zZRJGCgdTYXZlTG9nEhwubWVkaWFmaWxlLnYxLlNhdmVMb2dSZXF1ZXN0Gh0ubWVkaWFmaWxlLnYxLlNhdmVMb2dSZXNwb25zZRJGCgdMb2FkTG9nEhwubWVkaWFmaWxlLnYxLkxvYWRMb2dSZXF1ZXN0Gh0ubWVkaWFmaWxlLnYxLkxvYWRMb2dSZXNwb25zZRJMCglTZXRDb25maWcSHi5tZWRpYWZpbGUudjEuU2V0Q29uZmlnUmVxdWVzdBofLm1lZGlhZmlsZS52MS5TZXRDb25maWdSZXNwb25zZRJMCglHZXRDb25maWcSHi5tZWRpYWZpbGUudjEuR2V0Q29uZmlnUmVxdWVzdBofLm1lZGlhZmlsZS52MS5HZXRDb25maWdSZXNwb25zZRJMCglHZXRQaG90b3MSHi5tZWRpYWZpbGUudjEuR2V0UGhvdG9zUmVxdWVzdBofLm1lZGlhZmlsZS52MS5HZXRQaG90b3NSZXNwb25zZRJPCgpNb3ZlUGhvdG9zEh8ubWVkaWFmaWxlLnYxLk1vdmVQaG90b3NSZXF1ZXN0GiAubWVkaWFmaWxlLnYxLk1vdmVQaG90b3NSZXNwb25zZRJPCgpHZXRDYW1lcmFzEh8ubWVkaWFmaWxlLnYxLkdldENhbWVyYXNSZXF1ZXN0GiAubWVkaWFmaWxlLnYxLkdldENhbWVyYXNSZXNwb25zZRJDCgZHZXRMb2cSGy5tZWRpYWZpbGUudjEuR2V0TG9nUmVxdWVzdBocLm1lZGlhZmlsZS52MS5HZXRMb2dSZXNwb25zZUJzChBjb20ubWVkaWFmaWxlLnYxQg5NZWRpYWZpbGVQcm90b1ABogIDTVhYqgIMTWVkaWFmaWxlLlYxygIMTWVkaWFmaWxlXFYx4gIYTWVkaWFmaWxlXFYxXEdQQk1ldGFkYXRh6gINTWVkaWFmaWxlOjpWMWIGcHJvdG8z");
+
+/**
+ * Describes the message mediafile.v1.SaveConfigRequest.
+ * Use `create(SaveConfigRequestSchema)` to create a new message.
+ */
+export const SaveConfigRequestSchema = /*@__PURE__*/
+  messageDesc(file_mediafile_v1_mediafile, 0);
+
+/**
+ * Describes the message mediafile.v1.SaveConfigResponse.
+ * Use `create(SaveConfigResponseSchema)` to create a new message.
+ */
+export const SaveConfigResponseSchema = /*@__PURE__*/
+  messageDesc(file_mediafile_v1_mediafile, 1);
+
+/**
+ * Describes the message mediafile.v1.LoadConfigRequest.
+ * Use `create(LoadConfigRequestSchema)` to create a new message.
+ */
+export const LoadConfigRequestSchema = /*@__PURE__*/
+  messageDesc(file_mediafile_v1_mediafile, 2);
+
+/**
+ * Describes the message mediafile.v1.LoadConfigResponse.
+ * Use `create(LoadConfigResponseSchema)` to create a new message.
+ */
+export const LoadConfigResponseSchema = /*@__PURE__*/
+  messageDesc(file_mediafile_v1_mediafile, 3);
+
+/**
+ * Describes the message mediafile.v1.SavePhotoCacheRequest.
+ * Use `create(SavePhotoCacheRequestSchema)` to create a new message.
+ */
+export const SavePhotoCacheRequestSchema = /*@__PURE__*/
+  messageDesc(file_mediafile_v1_mediafile, 4);
+
+/**
+ * Describes the message mediafile.v1.SavePhotoCacheResponse.
+ * Use `create(SavePhotoCacheResponseSchema)` to create a new message.
+ */
+export const SavePhotoCacheResponseSchema = /*@__PURE__*/
+  messageDesc(file_mediafile_v1_mediafile, 5);
+
+/**
+ * Describes the message mediafile.v1.LoadPhotoCacheRequest.
+ * Use `create(LoadPhotoCacheRequestSchema)` to create a new message.
+ */
+export const LoadPhotoCacheRequestSchema = /*@__PURE__*/
+  messageDesc(file_mediafile_v1_mediafile, 6);
+
+/**
+ * Describes the message mediafile.v1.LoadPhotoCacheResponse.
+ * Use `create(LoadPhotoCacheResponseSchema)` to create a new message.
+ */
+export const LoadPhotoCacheResponseSchema = /*@__PURE__*/
+  messageDesc(file_mediafile_v1_mediafile, 7);
+
+/**
+ * Describes the message mediafile.v1.SaveCameraCacheRequest.
+ * Use `create(SaveCameraCacheRequestSchema)` to create a new message.
+ */
+export const SaveCameraCacheRequestSchema = /*@__PURE__*/
+  messageDesc(file_mediafile_v1_mediafile, 8);
+
+/**
+ * Describes the message mediafile.v1.SaveCameraCacheResponse.
+ * Use `create(SaveCameraCacheResponseSchema)` to create a new message.
+ */
+export const SaveCameraCacheResponseSchema = /*@__PURE__*/
+  messageDesc(file_mediafile_v1_mediafile, 9);
+
+/**
+ * Describes the message mediafile.v1.LoadCameraCacheRequest.
+ * Use `create(LoadCameraCacheRequestSchema)` to create a new message.
+ */
+export const LoadCameraCacheRequestSchema = /*@__PURE__*/
+  messageDesc(file_mediafile_v1_mediafile, 10);
+
+/**
+ * Describes the message mediafile.v1.LoadCameraCacheResponse.
+ * Use `create(LoadCameraCacheResponseSchema)` to create a new message.
+ */
+export const LoadCameraCacheResponseSchema = /*@__PURE__*/
+  messageDesc(file_mediafile_v1_mediafile, 11);
+
+/**
+ * Describes the message mediafile.v1.SaveLogRequest.
+ * Use `create(SaveLogRequestSchema)` to create a new message.
+ */
+export const SaveLogRequestSchema = /*@__PURE__*/
+  messageDesc(file_mediafile_v1_mediafile, 12);
+
+/**
+ * Describes the message mediafile.v1.SaveLogResponse.
+ * Use `create(SaveLogResponseSchema)` to create a new message.
+ */
+export const SaveLogResponseSchema = /*@__PURE__*/
+  messageDesc(file_mediafile_v1_mediafile, 13);
+
+/**
+ * Describes the message mediafile.v1.LoadLogRequest.
+ * Use `create(LoadLogRequestSchema)` to create a new message.
+ */
+export const LoadLogRequestSchema = /*@__PURE__*/
+  messageDesc(file_mediafile_v1_mediafile, 14);
+
+/**
+ * Describes the message mediafile.v1.LoadLogResponse.
+ * Use `create(LoadLogResponseSchema)` to create a new message.
+ */
+export const LoadLogResponseSchema = /*@__PURE__*/
+  messageDesc(file_mediafile_v1_mediafile, 15);
 
 /**
  * Describes the message mediafile.v1.Instant.
  * Use `create(InstantSchema)` to create a new message.
  */
 export const InstantSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 0);
+  messageDesc(file_mediafile_v1_mediafile, 16);
 
 /**
  * Describes the message mediafile.v1.Config.
  * Use `create(ConfigSchema)` to create a new message.
  */
 export const ConfigSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 1);
+  messageDesc(file_mediafile_v1_mediafile, 17);
 
 /**
  * Describes the message mediafile.v1.SetConfigRequest.
  * Use `create(SetConfigRequestSchema)` to create a new message.
  */
 export const SetConfigRequestSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 2);
+  messageDesc(file_mediafile_v1_mediafile, 18);
 
 /**
  * Describes the message mediafile.v1.SetConfigResponse.
  * Use `create(SetConfigResponseSchema)` to create a new message.
  */
 export const SetConfigResponseSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 3);
+  messageDesc(file_mediafile_v1_mediafile, 19);
 
 /**
  * Describes the message mediafile.v1.GetConfigRequest.
  * Use `create(GetConfigRequestSchema)` to create a new message.
  */
 export const GetConfigRequestSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 4);
+  messageDesc(file_mediafile_v1_mediafile, 20);
 
 /**
  * Describes the message mediafile.v1.GetConfigResponse.
  * Use `create(GetConfigResponseSchema)` to create a new message.
  */
 export const GetConfigResponseSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 5);
+  messageDesc(file_mediafile_v1_mediafile, 21);
 
 /**
  * Describes the message mediafile.v1.Photo.
  * Use `create(PhotoSchema)` to create a new message.
  */
 export const PhotoSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 6);
+  messageDesc(file_mediafile_v1_mediafile, 22);
 
 /**
  * Describes the message mediafile.v1.Metadata.
  * Use `create(MetadataSchema)` to create a new message.
  */
 export const MetadataSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 7);
+  messageDesc(file_mediafile_v1_mediafile, 23);
 
 /**
  * Describes the message mediafile.v1.GetPhotosRequest.
  * Use `create(GetPhotosRequestSchema)` to create a new message.
  */
 export const GetPhotosRequestSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 8);
+  messageDesc(file_mediafile_v1_mediafile, 24);
 
 /**
  * Describes the message mediafile.v1.GetPhotosResponse.
  * Use `create(GetPhotosResponseSchema)` to create a new message.
  */
 export const GetPhotosResponseSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 9);
+  messageDesc(file_mediafile_v1_mediafile, 25);
 
 /**
  * Describes the message mediafile.v1.MovePhotosRequest.
  * Use `create(MovePhotosRequestSchema)` to create a new message.
  */
 export const MovePhotosRequestSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 10);
+  messageDesc(file_mediafile_v1_mediafile, 26);
 
 /**
  * Describes the message mediafile.v1.MovePhotosResponse.
  * Use `create(MovePhotosResponseSchema)` to create a new message.
  */
 export const MovePhotosResponseSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 11);
+  messageDesc(file_mediafile_v1_mediafile, 27);
 
 /**
  * Describes the message mediafile.v1.PhotoList.
  * Use `create(PhotoListSchema)` to create a new message.
  */
 export const PhotoListSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 12);
+  messageDesc(file_mediafile_v1_mediafile, 28);
 
 /**
  * Describes the message mediafile.v1.PhotoMap.
  * Use `create(PhotoMapSchema)` to create a new message.
  */
 export const PhotoMapSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 13);
+  messageDesc(file_mediafile_v1_mediafile, 29);
 
 /**
  * Describes the message mediafile.v1.Camera.
  * Use `create(CameraSchema)` to create a new message.
  */
 export const CameraSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 14);
+  messageDesc(file_mediafile_v1_mediafile, 30);
 
 /**
  * Describes the message mediafile.v1.GetCamerasRequest.
  * Use `create(GetCamerasRequestSchema)` to create a new message.
  */
 export const GetCamerasRequestSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 15);
+  messageDesc(file_mediafile_v1_mediafile, 31);
 
 /**
  * Describes the message mediafile.v1.GetCamerasResponse.
  * Use `create(GetCamerasResponseSchema)` to create a new message.
  */
 export const GetCamerasResponseSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 16);
+  messageDesc(file_mediafile_v1_mediafile, 32);
 
 /**
  * Describes the message mediafile.v1.CameraMap.
  * Use `create(CameraMapSchema)` to create a new message.
  */
 export const CameraMapSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 17);
+  messageDesc(file_mediafile_v1_mediafile, 33);
 
 /**
  * Describes the message mediafile.v1.CameraList.
  * Use `create(CameraListSchema)` to create a new message.
  */
 export const CameraListSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 18);
+  messageDesc(file_mediafile_v1_mediafile, 34);
 
 /**
  * Describes the message mediafile.v1.Log.
  * Use `create(LogSchema)` to create a new message.
  */
 export const LogSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 19);
+  messageDesc(file_mediafile_v1_mediafile, 35);
 
 /**
  * Describes the message mediafile.v1.LogList.
  * Use `create(LogListSchema)` to create a new message.
  */
 export const LogListSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 20);
+  messageDesc(file_mediafile_v1_mediafile, 36);
 
 /**
  * Describes the message mediafile.v1.GetLogRequest.
  * Use `create(GetLogRequestSchema)` to create a new message.
  */
 export const GetLogRequestSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 21);
+  messageDesc(file_mediafile_v1_mediafile, 37);
 
 /**
- * Describes the message mediafile.v1.GetLogsResponse.
- * Use `create(GetLogsResponseSchema)` to create a new message.
+ * Describes the message mediafile.v1.GetLogResponse.
+ * Use `create(GetLogResponseSchema)` to create a new message.
  */
-export const GetLogsResponseSchema = /*@__PURE__*/
-  messageDesc(file_mediafile_v1_mediafile, 22);
+export const GetLogResponseSchema = /*@__PURE__*/
+  messageDesc(file_mediafile_v1_mediafile, 38);
 
 /**
  * Describes the enum mediafile.v1.Mode.
