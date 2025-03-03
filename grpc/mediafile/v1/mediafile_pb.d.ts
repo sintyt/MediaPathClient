@@ -11,70 +11,6 @@ import type { Message } from "@bufbuild/protobuf";
 export declare const file_mediafile_v1_mediafile: GenFile;
 
 /**
- * @generated from message mediafile.v1.SaveConfigRequest
- */
-export declare type SaveConfigRequest = Message<"mediafile.v1.SaveConfigRequest"> & {
-  /**
-   * @generated from field: mediafile.v1.Mode mode = 1;
-   */
-  mode: Mode;
-};
-
-/**
- * Describes the message mediafile.v1.SaveConfigRequest.
- * Use `create(SaveConfigRequestSchema)` to create a new message.
- */
-export declare const SaveConfigRequestSchema: GenMessage<SaveConfigRequest>;
-
-/**
- * @generated from message mediafile.v1.SaveConfigResponse
- */
-export declare type SaveConfigResponse = Message<"mediafile.v1.SaveConfigResponse"> & {
-  /**
-   * @generated from field: bool success = 1;
-   */
-  success: boolean;
-};
-
-/**
- * Describes the message mediafile.v1.SaveConfigResponse.
- * Use `create(SaveConfigResponseSchema)` to create a new message.
- */
-export declare const SaveConfigResponseSchema: GenMessage<SaveConfigResponse>;
-
-/**
- * @generated from message mediafile.v1.LoadConfigRequest
- */
-export declare type LoadConfigRequest = Message<"mediafile.v1.LoadConfigRequest"> & {
-  /**
-   * @generated from field: mediafile.v1.Mode mode = 1;
-   */
-  mode: Mode;
-};
-
-/**
- * Describes the message mediafile.v1.LoadConfigRequest.
- * Use `create(LoadConfigRequestSchema)` to create a new message.
- */
-export declare const LoadConfigRequestSchema: GenMessage<LoadConfigRequest>;
-
-/**
- * @generated from message mediafile.v1.LoadConfigResponse
- */
-export declare type LoadConfigResponse = Message<"mediafile.v1.LoadConfigResponse"> & {
-  /**
-   * @generated from field: bool success = 1;
-   */
-  success: boolean;
-};
-
-/**
- * Describes the message mediafile.v1.LoadConfigResponse.
- * Use `create(LoadConfigResponseSchema)` to create a new message.
- */
-export declare const LoadConfigResponseSchema: GenMessage<LoadConfigResponse>;
-
-/**
  * @generated from message mediafile.v1.SavePhotoCacheRequest
  */
 export declare type SavePhotoCacheRequest = Message<"mediafile.v1.SavePhotoCacheRequest"> & {
@@ -315,7 +251,6 @@ export declare type Config = Message<"mediafile.v1.Config"> & {
 
   /**
    * Configファイルのファイル名(ex. .config.json)
-   * ex. photo_distination/.config.json
    *
    * @generated from field: string config_path = 2;
    */
@@ -324,9 +259,9 @@ export declare type Config = Message<"mediafile.v1.Config"> & {
   /**
    * 写真の移動先ディレクトリ
    *
-   * @generated from field: string photo_distination = 3;
+   * @generated from field: string managed_photo_path = 3;
    */
-  photoDistination: string;
+  managedPhotoPath: string;
 
   /**
    * 対象とする画像ファイルの拡張子配列
@@ -359,13 +294,6 @@ export declare type Config = Message<"mediafile.v1.Config"> & {
    * @generated from field: string log_path = 7;
    */
   logPath: string;
-
-  /**
-   * 画像ファイルのソースディレクトリ
-   *
-   * @generated from field: repeated string photo_sources = 8;
-   */
-  photoSources: string[];
 };
 
 /**
@@ -377,9 +305,43 @@ export declare const ConfigSchema: GenMessage<Config>;
 /**
  * 
  *
- * @generated from message mediafile.v1.SetConfigRequest
+ * @generated from message mediafile.v1.ReadConfigRequest
  */
-export declare type SetConfigRequest = Message<"mediafile.v1.SetConfigRequest"> & {
+export declare type ReadConfigRequest = Message<"mediafile.v1.ReadConfigRequest"> & {
+  /**
+   * @generated from field: mediafile.v1.Mode mode = 1;
+   */
+  mode: Mode;
+};
+
+/**
+ * Describes the message mediafile.v1.ReadConfigRequest.
+ * Use `create(ReadConfigRequestSchema)` to create a new message.
+ */
+export declare const ReadConfigRequestSchema: GenMessage<ReadConfigRequest>;
+
+/**
+ * @generated from message mediafile.v1.ReadConfigResponse
+ */
+export declare type ReadConfigResponse = Message<"mediafile.v1.ReadConfigResponse"> & {
+  /**
+   * @generated from field: mediafile.v1.Config config = 1;
+   */
+  config?: Config;
+};
+
+/**
+ * Describes the message mediafile.v1.ReadConfigResponse.
+ * Use `create(ReadConfigResponseSchema)` to create a new message.
+ */
+export declare const ReadConfigResponseSchema: GenMessage<ReadConfigResponse>;
+
+/**
+ * 
+ *
+ * @generated from message mediafile.v1.WriteConfigRequest
+ */
+export declare type WriteConfigRequest = Message<"mediafile.v1.WriteConfigRequest"> & {
   /**
    * @generated from field: mediafile.v1.Mode mode = 1;
    */
@@ -392,15 +354,15 @@ export declare type SetConfigRequest = Message<"mediafile.v1.SetConfigRequest"> 
 };
 
 /**
- * Describes the message mediafile.v1.SetConfigRequest.
- * Use `create(SetConfigRequestSchema)` to create a new message.
+ * Describes the message mediafile.v1.WriteConfigRequest.
+ * Use `create(WriteConfigRequestSchema)` to create a new message.
  */
-export declare const SetConfigRequestSchema: GenMessage<SetConfigRequest>;
+export declare const WriteConfigRequestSchema: GenMessage<WriteConfigRequest>;
 
 /**
- * @generated from message mediafile.v1.SetConfigResponse
+ * @generated from message mediafile.v1.WriteConfigResponse
  */
-export declare type SetConfigResponse = Message<"mediafile.v1.SetConfigResponse"> & {
+export declare type WriteConfigResponse = Message<"mediafile.v1.WriteConfigResponse"> & {
   /**
    * @generated from field: bool success = 1;
    */
@@ -408,44 +370,10 @@ export declare type SetConfigResponse = Message<"mediafile.v1.SetConfigResponse"
 };
 
 /**
- * Describes the message mediafile.v1.SetConfigResponse.
- * Use `create(SetConfigResponseSchema)` to create a new message.
+ * Describes the message mediafile.v1.WriteConfigResponse.
+ * Use `create(WriteConfigResponseSchema)` to create a new message.
  */
-export declare const SetConfigResponseSchema: GenMessage<SetConfigResponse>;
-
-/**
- * 
- *
- * @generated from message mediafile.v1.GetConfigRequest
- */
-export declare type GetConfigRequest = Message<"mediafile.v1.GetConfigRequest"> & {
-  /**
-   * @generated from field: mediafile.v1.Mode mode = 1;
-   */
-  mode: Mode;
-};
-
-/**
- * Describes the message mediafile.v1.GetConfigRequest.
- * Use `create(GetConfigRequestSchema)` to create a new message.
- */
-export declare const GetConfigRequestSchema: GenMessage<GetConfigRequest>;
-
-/**
- * @generated from message mediafile.v1.GetConfigResponse
- */
-export declare type GetConfigResponse = Message<"mediafile.v1.GetConfigResponse"> & {
-  /**
-   * @generated from field: mediafile.v1.Config config = 1;
-   */
-  config?: Config;
-};
-
-/**
- * Describes the message mediafile.v1.GetConfigResponse.
- * Use `create(GetConfigResponseSchema)` to create a new message.
- */
-export declare const GetConfigResponseSchema: GenMessage<GetConfigResponse>;
+export declare const WriteConfigResponseSchema: GenMessage<WriteConfigResponse>;
 
 /**
  * 写真情報メッセージ
@@ -464,11 +392,11 @@ export declare type Photo = Message<"mediafile.v1.Photo"> & {
   id: string;
 
   /**
-   * フルパス
+   * ファイルパス
    *
-   * @generated from field: string fullpath = 2;
+   * @generated from field: string file_path = 2;
    */
-  fullpath: string;
+  filePath: string;
 
   /**
    * ファイルサイズ
@@ -487,9 +415,9 @@ export declare type Photo = Message<"mediafile.v1.Photo"> & {
   /**
    * 推奨フルパス
    *
-   * @generated from field: string recommended_path = 5;
+   * @generated from field: string unique_file_path = 5;
    */
-  recommendedPath: string;
+  uniqueFilePath: string;
 };
 
 /**
@@ -540,6 +468,11 @@ export declare type GetPhotosRequest = Message<"mediafile.v1.GetPhotosRequest"> 
    * @generated from field: mediafile.v1.Mode mode = 1;
    */
   mode: Mode;
+
+  /**
+   * @generated from field: string source_path = 2;
+   */
+  sourcePath: string;
 };
 
 /**
@@ -636,6 +569,38 @@ export declare type PhotoMap = Message<"mediafile.v1.PhotoMap"> & {
  * Use `create(PhotoMapSchema)` to create a new message.
  */
 export declare const PhotoMapSchema: GenMessage<PhotoMap>;
+
+/**
+ * @generated from message mediafile.v1.GetPhotoSubFoldersRequest
+ */
+export declare type GetPhotoSubFoldersRequest = Message<"mediafile.v1.GetPhotoSubFoldersRequest"> & {
+  /**
+   * @generated from field: mediafile.v1.Mode mode = 1;
+   */
+  mode: Mode;
+};
+
+/**
+ * Describes the message mediafile.v1.GetPhotoSubFoldersRequest.
+ * Use `create(GetPhotoSubFoldersRequestSchema)` to create a new message.
+ */
+export declare const GetPhotoSubFoldersRequestSchema: GenMessage<GetPhotoSubFoldersRequest>;
+
+/**
+ * @generated from message mediafile.v1.GetPhotoSubFoldersResponse
+ */
+export declare type GetPhotoSubFoldersResponse = Message<"mediafile.v1.GetPhotoSubFoldersResponse"> & {
+  /**
+   * @generated from field: repeated string sub_folders = 1;
+   */
+  subFolders: string[];
+};
+
+/**
+ * Describes the message mediafile.v1.GetPhotoSubFoldersResponse.
+ * Use `create(GetPhotoSubFoldersResponseSchema)` to create a new message.
+ */
+export declare const GetPhotoSubFoldersResponseSchema: GenMessage<GetPhotoSubFoldersResponse>;
 
 /**
  * カメラ情報
@@ -880,24 +845,24 @@ export declare const ModeSchema: GenEnum<Mode>;
  */
 export declare const MediafileService: GenService<{
   /**
-   * コンフィギュレーションを保存します。
-   *
-   * @generated from rpc mediafile.v1.MediafileService.SaveConfig
-   */
-  saveConfig: {
-    methodKind: "unary";
-    input: typeof SaveConfigRequestSchema;
-    output: typeof SaveConfigResponseSchema;
-  },
-  /**
    * コンフィギュレーションを読み込みます。
    *
-   * @generated from rpc mediafile.v1.MediafileService.LoadConfig
+   * @generated from rpc mediafile.v1.MediafileService.ReadConfig
    */
-  loadConfig: {
+  readConfig: {
     methodKind: "unary";
-    input: typeof LoadConfigRequestSchema;
-    output: typeof LoadConfigResponseSchema;
+    input: typeof ReadConfigRequestSchema;
+    output: typeof ReadConfigResponseSchema;
+  },
+  /**
+   * コンフィギュレーションを保存します。
+   *
+   * @generated from rpc mediafile.v1.MediafileService.WriteConfig
+   */
+  writeConfig: {
+    methodKind: "unary";
+    input: typeof WriteConfigRequestSchema;
+    output: typeof WriteConfigResponseSchema;
   },
   /**
    * 写真のキャッシュ情報を保存します。
@@ -918,6 +883,16 @@ export declare const MediafileService: GenService<{
     methodKind: "unary";
     input: typeof LoadPhotoCacheRequestSchema;
     output: typeof LoadPhotoCacheResponseSchema;
+  },
+  /**
+   * photo_folder以下のディレクトリを取得します。
+   *
+   * @generated from rpc mediafile.v1.MediafileService.GetPhotoSubFolders
+   */
+  getPhotoSubFolders: {
+    methodKind: "unary";
+    input: typeof GetPhotoSubFoldersRequestSchema;
+    output: typeof GetPhotoSubFoldersResponseSchema;
   },
   /**
    * カメラのキャッシュ情報を保存します。
@@ -958,26 +933,6 @@ export declare const MediafileService: GenService<{
     methodKind: "unary";
     input: typeof LoadLogRequestSchema;
     output: typeof LoadLogResponseSchema;
-  },
-  /**
-   * コンフィギュレーションを取得します。
-   *
-   * @generated from rpc mediafile.v1.MediafileService.SetConfig
-   */
-  setConfig: {
-    methodKind: "unary";
-    input: typeof SetConfigRequestSchema;
-    output: typeof SetConfigResponseSchema;
-  },
-  /**
-   * コンフィギュレーションを設定します。
-   *
-   * @generated from rpc mediafile.v1.MediafileService.GetConfig
-   */
-  getConfig: {
-    methodKind: "unary";
-    input: typeof GetConfigRequestSchema;
-    output: typeof GetConfigResponseSchema;
   },
   /**
    * 写真情報を取得します。

@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetCamerasRequest, GetCamerasResponse, GetConfigRequest, GetConfigResponse, GetLogRequest, GetLogResponse, GetPhotosRequest, GetPhotosResponse, LoadCameraCacheRequest, LoadCameraCacheResponse, LoadConfigRequest, LoadConfigResponse, LoadLogRequest, LoadLogResponse, LoadPhotoCacheRequest, LoadPhotoCacheResponse, MovePhotosRequest, MovePhotosResponse, SaveCameraCacheRequest, SaveCameraCacheResponse, SaveConfigRequest, SaveConfigResponse, SaveLogRequest, SaveLogResponse, SavePhotoCacheRequest, SavePhotoCacheResponse, SetConfigRequest, SetConfigResponse } from "./mediafile_pb.js";
+import { GetCamerasRequest, GetCamerasResponse, GetLogRequest, GetLogResponse, GetPhotosRequest, GetPhotosResponse, GetPhotoSubFoldersRequest, GetPhotoSubFoldersResponse, LoadCameraCacheRequest, LoadCameraCacheResponse, LoadLogRequest, LoadLogResponse, LoadPhotoCacheRequest, LoadPhotoCacheResponse, MovePhotosRequest, MovePhotosResponse, ReadConfigRequest, ReadConfigResponse, SaveCameraCacheRequest, SaveCameraCacheResponse, SaveLogRequest, SaveLogResponse, SavePhotoCacheRequest, SavePhotoCacheResponse, WriteConfigRequest, WriteConfigResponse } from "./mediafile_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -15,25 +15,25 @@ export const MediafileService = {
   typeName: "mediafile.v1.MediafileService",
   methods: {
     /**
-     * コンフィギュレーションを保存します。
+     * コンフィギュレーションを読み込みます。
      *
-     * @generated from rpc mediafile.v1.MediafileService.SaveConfig
+     * @generated from rpc mediafile.v1.MediafileService.ReadConfig
      */
-    saveConfig: {
-      name: "SaveConfig",
-      I: SaveConfigRequest,
-      O: SaveConfigResponse,
+    readConfig: {
+      name: "ReadConfig",
+      I: ReadConfigRequest,
+      O: ReadConfigResponse,
       kind: MethodKind.Unary,
     },
     /**
-     * コンフィギュレーションを読み込みます。
+     * コンフィギュレーションを保存します。
      *
-     * @generated from rpc mediafile.v1.MediafileService.LoadConfig
+     * @generated from rpc mediafile.v1.MediafileService.WriteConfig
      */
-    loadConfig: {
-      name: "LoadConfig",
-      I: LoadConfigRequest,
-      O: LoadConfigResponse,
+    writeConfig: {
+      name: "WriteConfig",
+      I: WriteConfigRequest,
+      O: WriteConfigResponse,
       kind: MethodKind.Unary,
     },
     /**
@@ -56,6 +56,17 @@ export const MediafileService = {
       name: "LoadPhotoCache",
       I: LoadPhotoCacheRequest,
       O: LoadPhotoCacheResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * photo_folder以下のディレクトリを取得します。
+     *
+     * @generated from rpc mediafile.v1.MediafileService.GetPhotoSubFolders
+     */
+    getPhotoSubFolders: {
+      name: "GetPhotoSubFolders",
+      I: GetPhotoSubFoldersRequest,
+      O: GetPhotoSubFoldersResponse,
       kind: MethodKind.Unary,
     },
     /**
@@ -100,28 +111,6 @@ export const MediafileService = {
       name: "LoadLog",
       I: LoadLogRequest,
       O: LoadLogResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * コンフィギュレーションを取得します。
-     *
-     * @generated from rpc mediafile.v1.MediafileService.SetConfig
-     */
-    setConfig: {
-      name: "SetConfig",
-      I: SetConfigRequest,
-      O: SetConfigResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * コンフィギュレーションを設定します。
-     *
-     * @generated from rpc mediafile.v1.MediafileService.GetConfig
-     */
-    getConfig: {
-      name: "GetConfig",
-      I: GetConfigRequest,
-      O: GetConfigResponse,
       kind: MethodKind.Unary,
     },
     /**

@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetCamerasRequest, GetCamerasResponse, GetConfigRequest, GetConfigResponse, GetLogRequest, GetLogResponse, GetPhotosRequest, GetPhotosResponse, LoadCameraCacheRequest, LoadCameraCacheResponse, LoadConfigRequest, LoadConfigResponse, LoadLogRequest, LoadLogResponse, LoadPhotoCacheRequest, LoadPhotoCacheResponse, MovePhotosRequest, MovePhotosResponse, SaveCameraCacheRequest, SaveCameraCacheResponse, SaveConfigRequest, SaveConfigResponse, SaveLogRequest, SaveLogResponse, SavePhotoCacheRequest, SavePhotoCacheResponse, SetConfigRequest, SetConfigResponse } from "./mediafile_pb.js";
+import { GetCamerasRequest, GetCamerasResponse, GetLogRequest, GetLogResponse, GetPhotosRequest, GetPhotosResponse, GetPhotoSubFoldersRequest, GetPhotoSubFoldersResponse, LoadCameraCacheRequest, LoadCameraCacheResponse, LoadLogRequest, LoadLogResponse, LoadPhotoCacheRequest, LoadPhotoCacheResponse, MovePhotosRequest, MovePhotosResponse, ReadConfigRequest, ReadConfigResponse, SaveCameraCacheRequest, SaveCameraCacheResponse, SaveLogRequest, SaveLogResponse, SavePhotoCacheRequest, SavePhotoCacheResponse, WriteConfigRequest, WriteConfigResponse } from "./mediafile_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -15,25 +15,25 @@ export declare const MediafileService: {
   readonly typeName: "mediafile.v1.MediafileService",
   readonly methods: {
     /**
-     * コンフィギュレーションを保存します。
+     * コンフィギュレーションを読み込みます。
      *
-     * @generated from rpc mediafile.v1.MediafileService.SaveConfig
+     * @generated from rpc mediafile.v1.MediafileService.ReadConfig
      */
-    readonly saveConfig: {
-      readonly name: "SaveConfig",
-      readonly I: typeof SaveConfigRequest,
-      readonly O: typeof SaveConfigResponse,
+    readonly readConfig: {
+      readonly name: "ReadConfig",
+      readonly I: typeof ReadConfigRequest,
+      readonly O: typeof ReadConfigResponse,
       readonly kind: MethodKind.Unary,
     },
     /**
-     * コンフィギュレーションを読み込みます。
+     * コンフィギュレーションを保存します。
      *
-     * @generated from rpc mediafile.v1.MediafileService.LoadConfig
+     * @generated from rpc mediafile.v1.MediafileService.WriteConfig
      */
-    readonly loadConfig: {
-      readonly name: "LoadConfig",
-      readonly I: typeof LoadConfigRequest,
-      readonly O: typeof LoadConfigResponse,
+    readonly writeConfig: {
+      readonly name: "WriteConfig",
+      readonly I: typeof WriteConfigRequest,
+      readonly O: typeof WriteConfigResponse,
       readonly kind: MethodKind.Unary,
     },
     /**
@@ -56,6 +56,17 @@ export declare const MediafileService: {
       readonly name: "LoadPhotoCache",
       readonly I: typeof LoadPhotoCacheRequest,
       readonly O: typeof LoadPhotoCacheResponse,
+      readonly kind: MethodKind.Unary,
+    },
+    /**
+     * photo_folder以下のディレクトリを取得します。
+     *
+     * @generated from rpc mediafile.v1.MediafileService.GetPhotoSubFolders
+     */
+    readonly getPhotoSubFolders: {
+      readonly name: "GetPhotoSubFolders",
+      readonly I: typeof GetPhotoSubFoldersRequest,
+      readonly O: typeof GetPhotoSubFoldersResponse,
       readonly kind: MethodKind.Unary,
     },
     /**
@@ -100,28 +111,6 @@ export declare const MediafileService: {
       readonly name: "LoadLog",
       readonly I: typeof LoadLogRequest,
       readonly O: typeof LoadLogResponse,
-      readonly kind: MethodKind.Unary,
-    },
-    /**
-     * コンフィギュレーションを取得します。
-     *
-     * @generated from rpc mediafile.v1.MediafileService.SetConfig
-     */
-    readonly setConfig: {
-      readonly name: "SetConfig",
-      readonly I: typeof SetConfigRequest,
-      readonly O: typeof SetConfigResponse,
-      readonly kind: MethodKind.Unary,
-    },
-    /**
-     * コンフィギュレーションを設定します。
-     *
-     * @generated from rpc mediafile.v1.MediafileService.GetConfig
-     */
-    readonly getConfig: {
-      readonly name: "GetConfig",
-      readonly I: typeof GetConfigRequest,
-      readonly O: typeof GetConfigResponse,
       readonly kind: MethodKind.Unary,
     },
     /**
