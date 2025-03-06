@@ -433,37 +433,53 @@ export declare type Photo = Message<"mediafile.v1.Photo"> & {
    * カメラのモデル名・SUBSEC含む撮影日時（取得不可はファイルの作成日時）及び
    * ファイルサイズをハッシュ化したもの
    *
+   * 一意のID文字列
+   *
    * @generated from field: string id = 1;
    */
   id: string;
 
   /**
-   * ファイルパス
+   * フルパスファイル名
    *
-   * @generated from field: string file_path = 2;
+   * @generated from field: string file = 2;
    */
-  filePath: string;
+  file: string;
 
   /**
    * ファイルサイズ
    *
-   * @generated from field: uint64 file_size = 3;
+   * @generated from field: uint64 size = 3;
    */
-  fileSize: bigint;
+  size: bigint;
 
   /**
-   * メタデータ
+   * 撮影日時
    *
-   * @generated from field: mediafile.v1.Metadata metadata = 4;
+   * @generated from field: mediafile.v1.Instant shot_at = 4;
    */
-  metadata?: Metadata;
+  shotAt?: Instant;
 
   /**
-   * 推奨フルパス
+   * メーカー名
    *
-   * @generated from field: string unique_file_path = 5;
+   * @generated from field: string maker = 5;
    */
-  uniqueFilePath: string;
+  maker: string;
+
+  /**
+   * モデル名
+   *
+   * @generated from field: string model = 6;
+   */
+  model: string;
+
+  /**
+   * 推奨フルパスファイル名
+   *
+   * @generated from field: string unique_file = 7;
+   */
+  uniqueFile: string;
 };
 
 /**
@@ -471,40 +487,6 @@ export declare type Photo = Message<"mediafile.v1.Photo"> & {
  * Use `create(PhotoSchema)` to create a new message.
  */
 export declare const PhotoSchema: GenMessage<Photo>;
-
-/**
- * メタデータ
- *
- * @generated from message mediafile.v1.Metadata
- */
-export declare type Metadata = Message<"mediafile.v1.Metadata"> & {
-  /**
-   * 撮影日時
-   *
-   * @generated from field: mediafile.v1.Instant shot_at = 1;
-   */
-  shotAt?: Instant;
-
-  /**
-   * メーカー名
-   *
-   * @generated from field: string maker = 2;
-   */
-  maker: string;
-
-  /**
-   * モデル名
-   *
-   * @generated from field: string model = 3;
-   */
-  model: string;
-};
-
-/**
- * Describes the message mediafile.v1.Metadata.
- * Use `create(MetadataSchema)` to create a new message.
- */
-export declare const MetadataSchema: GenMessage<Metadata>;
 
 /**
  * @generated from message mediafile.v1.GetPhotosRequest
