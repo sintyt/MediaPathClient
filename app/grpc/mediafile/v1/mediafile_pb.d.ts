@@ -15,9 +15,9 @@ export declare const file_mediafile_v1_mediafile: GenFile;
  */
 export declare type SavePhotoCacheRequest = Message<"mediafile.v1.SavePhotoCacheRequest"> & {
   /**
-   * @generated from field: mediafile.v1.Mode mode = 1;
+   * @generated from field: mediafile.v1.RequestMode mode = 1;
    */
-  mode: Mode;
+  mode: RequestMode;
 };
 
 /**
@@ -31,9 +31,9 @@ export declare const SavePhotoCacheRequestSchema: GenMessage<SavePhotoCacheReque
  */
 export declare type SavePhotoCacheResponse = Message<"mediafile.v1.SavePhotoCacheResponse"> & {
   /**
-   * @generated from field: bool success = 1;
+   * @generated from field: mediafile.v1.ResponseStatus status = 1;
    */
-  success: boolean;
+  status: ResponseStatus;
 };
 
 /**
@@ -47,9 +47,9 @@ export declare const SavePhotoCacheResponseSchema: GenMessage<SavePhotoCacheResp
  */
 export declare type LoadPhotoCacheRequest = Message<"mediafile.v1.LoadPhotoCacheRequest"> & {
   /**
-   * @generated from field: mediafile.v1.Mode mode = 1;
+   * @generated from field: mediafile.v1.RequestMode mode = 1;
    */
-  mode: Mode;
+  mode: RequestMode;
 };
 
 /**
@@ -63,9 +63,9 @@ export declare const LoadPhotoCacheRequestSchema: GenMessage<LoadPhotoCacheReque
  */
 export declare type LoadPhotoCacheResponse = Message<"mediafile.v1.LoadPhotoCacheResponse"> & {
   /**
-   * @generated from field: bool success = 1;
+   * @generated from field: mediafile.v1.ResponseStatus status = 1;
    */
-  success: boolean;
+  status: ResponseStatus;
 };
 
 /**
@@ -79,9 +79,9 @@ export declare const LoadPhotoCacheResponseSchema: GenMessage<LoadPhotoCacheResp
  */
 export declare type SaveCameraCacheRequest = Message<"mediafile.v1.SaveCameraCacheRequest"> & {
   /**
-   * @generated from field: mediafile.v1.Mode mode = 1;
+   * @generated from field: mediafile.v1.RequestMode mode = 1;
    */
-  mode: Mode;
+  mode: RequestMode;
 };
 
 /**
@@ -95,9 +95,9 @@ export declare const SaveCameraCacheRequestSchema: GenMessage<SaveCameraCacheReq
  */
 export declare type SaveCameraCacheResponse = Message<"mediafile.v1.SaveCameraCacheResponse"> & {
   /**
-   * @generated from field: bool success = 1;
+   * @generated from field: mediafile.v1.ResponseStatus status = 1;
    */
-  success: boolean;
+  status: ResponseStatus;
 };
 
 /**
@@ -111,9 +111,9 @@ export declare const SaveCameraCacheResponseSchema: GenMessage<SaveCameraCacheRe
  */
 export declare type LoadCameraCacheRequest = Message<"mediafile.v1.LoadCameraCacheRequest"> & {
   /**
-   * @generated from field: mediafile.v1.Mode mode = 1;
+   * @generated from field: mediafile.v1.RequestMode mode = 1;
    */
-  mode: Mode;
+  mode: RequestMode;
 };
 
 /**
@@ -127,9 +127,9 @@ export declare const LoadCameraCacheRequestSchema: GenMessage<LoadCameraCacheReq
  */
 export declare type LoadCameraCacheResponse = Message<"mediafile.v1.LoadCameraCacheResponse"> & {
   /**
-   * @generated from field: bool success = 1;
+   * @generated from field: mediafile.v1.ResponseStatus status = 1;
    */
-  success: boolean;
+  status: ResponseStatus;
 };
 
 /**
@@ -143,9 +143,9 @@ export declare const LoadCameraCacheResponseSchema: GenMessage<LoadCameraCacheRe
  */
 export declare type SaveLogRequest = Message<"mediafile.v1.SaveLogRequest"> & {
   /**
-   * @generated from field: mediafile.v1.Mode mode = 1;
+   * @generated from field: mediafile.v1.RequestMode mode = 1;
    */
-  mode: Mode;
+  mode: RequestMode;
 };
 
 /**
@@ -159,9 +159,9 @@ export declare const SaveLogRequestSchema: GenMessage<SaveLogRequest>;
  */
 export declare type SaveLogResponse = Message<"mediafile.v1.SaveLogResponse"> & {
   /**
-   * @generated from field: bool success = 1;
+   * @generated from field: mediafile.v1.ResponseStatus status = 1;
    */
-  success: boolean;
+  status: ResponseStatus;
 };
 
 /**
@@ -175,9 +175,9 @@ export declare const SaveLogResponseSchema: GenMessage<SaveLogResponse>;
  */
 export declare type LoadLogRequest = Message<"mediafile.v1.LoadLogRequest"> & {
   /**
-   * @generated from field: mediafile.v1.Mode mode = 1;
+   * @generated from field: mediafile.v1.RequestMode mode = 1;
    */
-  mode: Mode;
+  mode: RequestMode;
 };
 
 /**
@@ -191,9 +191,9 @@ export declare const LoadLogRequestSchema: GenMessage<LoadLogRequest>;
  */
 export declare type LoadLogResponse = Message<"mediafile.v1.LoadLogResponse"> & {
   /**
-   * @generated from field: bool success = 1;
+   * @generated from field: mediafile.v1.ResponseStatus status = 1;
    */
-  success: boolean;
+  status: ResponseStatus;
 };
 
 /**
@@ -237,6 +237,52 @@ export declare type Instant = Message<"mediafile.v1.Instant"> & {
 export declare const InstantSchema: GenMessage<Instant>;
 
 /**
+ * フォルダー読み込みリクエストメッセージです。
+ *
+ * @generated from message mediafile.v1.ReadFolderRequest
+ */
+export declare type ReadFolderRequest = Message<"mediafile.v1.ReadFolderRequest"> & {
+  /**
+   * @generated from field: mediafile.v1.RequestMode mode = 1;
+   */
+  mode: RequestMode;
+
+  /**
+   * @generated from field: string folder = 2;
+   */
+  folder: string;
+};
+
+/**
+ * Describes the message mediafile.v1.ReadFolderRequest.
+ * Use `create(ReadFolderRequestSchema)` to create a new message.
+ */
+export declare const ReadFolderRequestSchema: GenMessage<ReadFolderRequest>;
+
+/**
+ * フォルダー読み込みレスポンスメッセージです。
+ *
+ * @generated from message mediafile.v1.ReadFolderResponse
+ */
+export declare type ReadFolderResponse = Message<"mediafile.v1.ReadFolderResponse"> & {
+  /**
+   * @generated from field: repeated string folders = 1;
+   */
+  folders: string[];
+
+  /**
+   * @generated from field: repeated string files = 2;
+   */
+  files: string[];
+};
+
+/**
+ * Describes the message mediafile.v1.ReadFolderResponse.
+ * Use `create(ReadFolderResponseSchema)` to create a new message.
+ */
+export declare const ReadFolderResponseSchema: GenMessage<ReadFolderResponse>;
+
+/**
  * サーバー環境メッセージです。
  *
  * @generated from message mediafile.v1.Config
@@ -250,18 +296,18 @@ export declare type Config = Message<"mediafile.v1.Config"> & {
   serverUrl: string;
 
   /**
-   * Configファイルのファイル名(ex. .config.json)
+   * Configファイルのフルパス文字列
    *
-   * @generated from field: string config_path = 2;
+   * @generated from field: string config_file = 2;
    */
-  configPath: string;
+  configFile: string;
 
   /**
-   * 写真の移動先ディレクトリ
+   * 管理する写真フォルダー
    *
-   * @generated from field: string managed_photo_path = 3;
+   * @generated from field: string managed_photo_folder = 3;
    */
-  managedPhotoPath: string;
+  managedPhotoFolder: string;
 
   /**
    * 対象とする画像ファイルの拡張子配列
@@ -272,28 +318,28 @@ export declare type Config = Message<"mediafile.v1.Config"> & {
   photofileExtensions: string[];
 
   /**
-   * 写真リスト（キャッシュ）を保存するファイル名
-   * ex. photo_distination/.cache/photo_cache.json
+   * 写真情報ののキャッシュを保存するファイル名
+   * ex. [managed_photo_folder]/.cache/photo_cache.json
    *
-   * @generated from field: string photo_cache_path = 5;
+   * @generated from field: string photo_cache_file = 5;
    */
-  photoCachePath: string;
+  photoCacheFile: string;
 
   /**
-   * カメラリスト（キャッシュ）を保存するファイル名
-   * ex. photo_distination/.cache/camera_cache.json
+   * カメラ情報のキャッシュを保存するファイル名
+   * ex. [managed_photo_folder]/.cache/camera_cache.json
    *
-   * @generated from field: string camera_cache_path = 6;
+   * @generated from field: string camera_cache_file = 6;
    */
-  cameraCachePath: string;
+  cameraCacheFile: string;
 
   /**
    * ログファイル名
-   * ex. photo_distination/.log/log.json
+   * ex. [managed_photo_folder]/.log/log.json
    *
-   * @generated from field: string log_path = 7;
+   * @generated from field: string log_file = 7;
    */
-  logPath: string;
+  logFile: string;
 };
 
 /**
@@ -309,9 +355,9 @@ export declare const ConfigSchema: GenMessage<Config>;
  */
 export declare type ReadConfigRequest = Message<"mediafile.v1.ReadConfigRequest"> & {
   /**
-   * @generated from field: mediafile.v1.Mode mode = 1;
+   * @generated from field: mediafile.v1.RequestMode mode = 1;
    */
-  mode: Mode;
+  mode: RequestMode;
 };
 
 /**
@@ -343,9 +389,9 @@ export declare const ReadConfigResponseSchema: GenMessage<ReadConfigResponse>;
  */
 export declare type WriteConfigRequest = Message<"mediafile.v1.WriteConfigRequest"> & {
   /**
-   * @generated from field: mediafile.v1.Mode mode = 1;
+   * @generated from field: mediafile.v1.RequestMode mode = 1;
    */
-  mode: Mode;
+  mode: RequestMode;
 
   /**
    * @generated from field: mediafile.v1.Config config = 2;
@@ -364,9 +410,9 @@ export declare const WriteConfigRequestSchema: GenMessage<WriteConfigRequest>;
  */
 export declare type WriteConfigResponse = Message<"mediafile.v1.WriteConfigResponse"> & {
   /**
-   * @generated from field: bool success = 1;
+   * @generated from field: mediafile.v1.ResponseStatus status = 1;
    */
-  success: boolean;
+  status: ResponseStatus;
 };
 
 /**
@@ -382,7 +428,7 @@ export declare const WriteConfigResponseSchema: GenMessage<WriteConfigResponse>;
  */
 export declare type Photo = Message<"mediafile.v1.Photo"> & {
   /**
-   * ディレクトリ及びファイル名に依存しない一意のID
+   * フォルダー及びファイル名に依存しない一意のID
    * このIDは、ファイル名が変更された場合でも変更されない
    * カメラのモデル名・SUBSEC含む撮影日時（取得不可はファイルの作成日時）及び
    * ファイルサイズをハッシュ化したもの
@@ -465,9 +511,9 @@ export declare const MetadataSchema: GenMessage<Metadata>;
  */
 export declare type GetPhotosRequest = Message<"mediafile.v1.GetPhotosRequest"> & {
   /**
-   * @generated from field: mediafile.v1.Mode mode = 1;
+   * @generated from field: mediafile.v1.RequestMode mode = 1;
    */
-  mode: Mode;
+  mode: RequestMode;
 
   /**
    * @generated from field: string source_path = 2;
@@ -504,9 +550,9 @@ export declare const GetPhotosResponseSchema: GenMessage<GetPhotosResponse>;
  */
 export declare type MovePhotosRequest = Message<"mediafile.v1.MovePhotosRequest"> & {
   /**
-   * @generated from field: mediafile.v1.Mode mode = 1;
+   * @generated from field: mediafile.v1.RequestMode mode = 1;
    */
-  mode: Mode;
+  mode: RequestMode;
 
   /**
    * @generated from field: repeated string ids = 2;
@@ -527,9 +573,9 @@ export declare const MovePhotosRequestSchema: GenMessage<MovePhotosRequest>;
  */
 export declare type MovePhotosResponse = Message<"mediafile.v1.MovePhotosResponse"> & {
   /**
-   * @generated from field: bool success = 1;
+   * @generated from field: mediafile.v1.ResponseStatus status = 1;
    */
-  success: boolean;
+  status: ResponseStatus;
 };
 
 /**
@@ -569,38 +615,6 @@ export declare type PhotoMap = Message<"mediafile.v1.PhotoMap"> & {
  * Use `create(PhotoMapSchema)` to create a new message.
  */
 export declare const PhotoMapSchema: GenMessage<PhotoMap>;
-
-/**
- * @generated from message mediafile.v1.GetPhotoSubFoldersRequest
- */
-export declare type GetPhotoSubFoldersRequest = Message<"mediafile.v1.GetPhotoSubFoldersRequest"> & {
-  /**
-   * @generated from field: mediafile.v1.Mode mode = 1;
-   */
-  mode: Mode;
-};
-
-/**
- * Describes the message mediafile.v1.GetPhotoSubFoldersRequest.
- * Use `create(GetPhotoSubFoldersRequestSchema)` to create a new message.
- */
-export declare const GetPhotoSubFoldersRequestSchema: GenMessage<GetPhotoSubFoldersRequest>;
-
-/**
- * @generated from message mediafile.v1.GetPhotoSubFoldersResponse
- */
-export declare type GetPhotoSubFoldersResponse = Message<"mediafile.v1.GetPhotoSubFoldersResponse"> & {
-  /**
-   * @generated from field: repeated string sub_folders = 1;
-   */
-  subFolders: string[];
-};
-
-/**
- * Describes the message mediafile.v1.GetPhotoSubFoldersResponse.
- * Use `create(GetPhotoSubFoldersResponseSchema)` to create a new message.
- */
-export declare const GetPhotoSubFoldersResponseSchema: GenMessage<GetPhotoSubFoldersResponse>;
 
 /**
  * カメラ情報
@@ -662,9 +676,9 @@ export declare const CameraSchema: GenMessage<Camera>;
  */
 export declare type GetCamerasRequest = Message<"mediafile.v1.GetCamerasRequest"> & {
   /**
-   * @generated from field: mediafile.v1.Mode mode = 1;
+   * @generated from field: mediafile.v1.RequestMode mode = 1;
    */
-  mode: Mode;
+  mode: RequestMode;
 };
 
 /**
@@ -773,9 +787,9 @@ export declare const LogListSchema: GenMessage<LogList>;
  */
 export declare type GetLogRequest = Message<"mediafile.v1.GetLogRequest"> & {
   /**
-   * @generated from field: mediafile.v1.Mode mode = 1;
+   * @generated from field: mediafile.v1.RequestMode mode = 1;
    */
-  mode: Mode;
+  mode: RequestMode;
 };
 
 /**
@@ -801,42 +815,68 @@ export declare type GetLogResponse = Message<"mediafile.v1.GetLogResponse"> & {
 export declare const GetLogResponseSchema: GenMessage<GetLogResponse>;
 
 /**
- * 各種モードの列挙型です。
+ * リクエストモードの列挙型です。
  *
- * @generated from enum mediafile.v1.Mode
+ * @generated from enum mediafile.v1.RequestMode
  */
-export enum Mode {
+export enum RequestMode {
   /**
-   * @generated from enum value: MODE_UNSPECIFIED = 0;
+   * @generated from enum value: DEFAULT_MODE = 0;
    */
-  UNSPECIFIED = 0,
+  DEFAULT_MODE = 0,
 
   /**
    * ファイルから取得、ファイルアクセスありキャッシュの更新
    *
-   * @generated from enum value: MODE_FILE = 1;
+   * @generated from enum value: FILE_MODE = 1;
    */
-  FILE = 1,
+  FILE_MODE = 1,
 
   /**
    * キャッシュのみ、ファイルアクセスしない
    *
-   * @generated from enum value: MODE_CACHE = 2;
+   * @generated from enum value: CACHE_MODE = 2;
    */
-  CACHE = 2,
+  CACHE_MODE = 2,
 
   /**
    * テスト用
    *
-   * @generated from enum value: MODE_TEST = 3;
+   * @generated from enum value: TEST_MODE = 3;
    */
-  TEST = 3,
+  TEST_MODE = 3,
 }
 
 /**
- * Describes the enum mediafile.v1.Mode.
+ * Describes the enum mediafile.v1.RequestMode.
  */
-export declare const ModeSchema: GenEnum<Mode>;
+export declare const RequestModeSchema: GenEnum<RequestMode>;
+
+/**
+ * レスポンスステータスの列挙型です。
+ *
+ * @generated from enum mediafile.v1.ResponseStatus
+ */
+export enum ResponseStatus {
+  /**
+   * 正常終了
+   *
+   * @generated from enum value: STATUS_OK = 0;
+   */
+  STATUS_OK = 0,
+
+  /**
+   * エラー
+   *
+   * @generated from enum value: STATUS_ERROR = 1;
+   */
+  STATUS_ERROR = 1,
+}
+
+/**
+ * Describes the enum mediafile.v1.ResponseStatus.
+ */
+export declare const ResponseStatusSchema: GenEnum<ResponseStatus>;
 
 /**
  * 
@@ -844,6 +884,16 @@ export declare const ModeSchema: GenEnum<Mode>;
  * @generated from service mediafile.v1.MediafileService
  */
 export declare const MediafileService: GenService<{
+  /**
+   * 
+   *
+   * @generated from rpc mediafile.v1.MediafileService.ReadFolder
+   */
+  readFolder: {
+    methodKind: "unary";
+    input: typeof ReadFolderRequestSchema;
+    output: typeof ReadFolderResponseSchema;
+  },
   /**
    * コンフィギュレーションを読み込みます。
    *
@@ -883,16 +933,6 @@ export declare const MediafileService: GenService<{
     methodKind: "unary";
     input: typeof LoadPhotoCacheRequestSchema;
     output: typeof LoadPhotoCacheResponseSchema;
-  },
-  /**
-   * photo_folder以下のディレクトリを取得します。
-   *
-   * @generated from rpc mediafile.v1.MediafileService.GetPhotoSubFolders
-   */
-  getPhotoSubFolders: {
-    methodKind: "unary";
-    input: typeof GetPhotoSubFoldersRequestSchema;
-    output: typeof GetPhotoSubFoldersResponseSchema;
   },
   /**
    * カメラのキャッシュ情報を保存します。

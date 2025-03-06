@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetCamerasRequest, GetCamerasResponse, GetLogRequest, GetLogResponse, GetPhotosRequest, GetPhotosResponse, GetPhotoSubFoldersRequest, GetPhotoSubFoldersResponse, LoadCameraCacheRequest, LoadCameraCacheResponse, LoadLogRequest, LoadLogResponse, LoadPhotoCacheRequest, LoadPhotoCacheResponse, MovePhotosRequest, MovePhotosResponse, ReadConfigRequest, ReadConfigResponse, SaveCameraCacheRequest, SaveCameraCacheResponse, SaveLogRequest, SaveLogResponse, SavePhotoCacheRequest, SavePhotoCacheResponse, WriteConfigRequest, WriteConfigResponse } from "./mediafile_pb.js";
+import { GetCamerasRequest, GetCamerasResponse, GetLogRequest, GetLogResponse, GetPhotosRequest, GetPhotosResponse, LoadCameraCacheRequest, LoadCameraCacheResponse, LoadLogRequest, LoadLogResponse, LoadPhotoCacheRequest, LoadPhotoCacheResponse, MovePhotosRequest, MovePhotosResponse, ReadConfigRequest, ReadConfigResponse, ReadFolderRequest, ReadFolderResponse, SaveCameraCacheRequest, SaveCameraCacheResponse, SaveLogRequest, SaveLogResponse, SavePhotoCacheRequest, SavePhotoCacheResponse, WriteConfigRequest, WriteConfigResponse } from "./mediafile_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -14,6 +14,17 @@ import { MethodKind } from "@bufbuild/protobuf";
 export const MediafileService = {
   typeName: "mediafile.v1.MediafileService",
   methods: {
+    /**
+     * 
+     *
+     * @generated from rpc mediafile.v1.MediafileService.ReadFolder
+     */
+    readFolder: {
+      name: "ReadFolder",
+      I: ReadFolderRequest,
+      O: ReadFolderResponse,
+      kind: MethodKind.Unary,
+    },
     /**
      * コンフィギュレーションを読み込みます。
      *
@@ -56,17 +67,6 @@ export const MediafileService = {
       name: "LoadPhotoCache",
       I: LoadPhotoCacheRequest,
       O: LoadPhotoCacheResponse,
-      kind: MethodKind.Unary,
-    },
-    /**
-     * photo_folder以下のディレクトリを取得します。
-     *
-     * @generated from rpc mediafile.v1.MediafileService.GetPhotoSubFolders
-     */
-    getPhotoSubFolders: {
-      name: "GetPhotoSubFolders",
-      I: GetPhotoSubFoldersRequest,
-      O: GetPhotoSubFoldersResponse,
       kind: MethodKind.Unary,
     },
     /**

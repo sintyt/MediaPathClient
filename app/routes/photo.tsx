@@ -1,63 +1,55 @@
 import type { Route } from "./+types/photo";
 
+
 import { useLoaderData, type LoaderFunctionArgs, Await, useNavigate, useAsyncError } from "react-router";
 import { Suspense, useEffect, useState } from "react";
 
 import {
-  Mode,
+  RequestMode,
+  ResponseStatus,
   type Config,
   type Photo,
-} from "~/mediafile/v1/mediafile_pb";
-import { MediafileGrpcClient } from "~/mediafileGrpcClient";
+} from "~/grpc/mediafile/v1/mediafile_pb";
+import { GrpcMediafileClient } from "~/hooks/grpcMediafileClient";
 
-export function meta() {
+export function meta({ }: Route.MetaArgs) {
   return [
     { title: "写真ファイル管理アプリ" },
-    { name: "description", content: "写真ファイル情報から保存場所を取得し整理" },
+    { name: "description", content: "写真ファイル情報を元に保存場所を決定し移動" },
   ];
 }
 
 // ローダー関数
 export async function loader({ }: LoaderFunctionArgs) {
   // 設定データをすぐに取得
-  const loaderResponse = await ReadConfigPromise(Mode.FILE);
-  return { loaderResponse };
+  const readConfigResponse = await ReadConfigPromise(RequestMode.FILE_MODE);
+  return { readConfigResponse };
 }
 
 // 設定データを取得 - これは即座に解決される
-const ReadConfigPromise = async (mode: Mode) => {
-  return MediafileGrpcClient.readConfig({
+const ReadConfigPromise = async (mode: RequestMode) => {
+  return GrpcMediafileClient.readConfig({
     mode: mode,
   }).catch(error => {
     return error instanceof Error ? error : new Error("コンフィギュレーションデータの取得ができませんでした、MediafileServerが起動しているか確認してください。");
   });
 };
 
-// 写真データを取得
-const GetPhotosPromise = async (mode: Mode, folder: string) => {
-  return MediafileGrpcClient.getPhotos({
-    mode: mode,
-    sourcePath: folder,
-  }).catch(error => {
-    return error instanceof Error ? error : new Error("写真データの取得に失敗しました、MediafileServerが起動しているか確認してください。");
-  });
-};
+// フォルダー内のフォルダー一覧を取得 
+const ReadFolderPromise = async (mode: RequestMode) => {
+  // 
+  const IgnoreFolders = [".cache", ".config"];
 
-// 写真の配布先のサブフォルダーディレクトリ一覧を取得 
-const GetPhotoFoldersPromise = async (mode: Mode) => {
-  return MediafileGrpcClient.getPhotoSubFolders({
+  return await GrpcMediafileClient.readFolder({
     mode: mode,
   }).then(response => {
-    const filteredFolders = response.subFolders?.filter(folder => {
+    return response.folders?.filter(folder =>
       // Check if folder name is in the ignore list
-      return !IgnoreFolders.some(ignoreFolder =>
-        folder.toLowerCase().includes(ignoreFolder.toLowerCase())
-      );
-    }) || [];
-
-    return filteredFolders;
-  }
-  ).catch(error => {
+      !IgnoreFolders.some(ignoreFolder =>
+        folder.toLowerCase().includes(ignoreFolder.toLowerCase()
+      )
+    ) || []);
+  }).catch(error => {
     return error instanceof Error ? error : new Error("写真の配布先内のディレクトリ一覧の取得ができませんでした、MediafileServerが起動しているか確認してください。");
   });
 };
@@ -111,33 +103,30 @@ function ErrorDisplay({ message, onRetry }: { message: string; onRetry?: () => v
   );
 }
 
-type PhotoFolderEntry = {
+type FolderEntry = {
   folderName: string,
-  photos: Photo[],
+  folders: string[],
+  files: string[],
   isBusy: boolean,
 };
 
-type PhotoFolderEntryMap = Map<string, PhotoFolderEntry>;
-
-const IgnoreFolders = [".cache", ".config"];
-
+type FolderEntryMap = Map<string, FolderEntry>;
 
 export default function Photo() {
   const navigate = useNavigate();
-  const { loaderResponse } = useLoaderData<typeof loader>();
+  const { readConfigResponse } = useLoaderData<typeof loader>();
   const [config, setConfig] = useState<Config | undefined>(undefined);
-  const [photoFolderEntryMap, setPhotoFolderEntryMap] = useState<PhotoFolderEntryMap>(new Map());
+  const [photoFolderStatusMap, setPhotoFolderStatusMap] = useState<FolderEntryMap>(new Map());
   const [photoFolderBusy, setPhotoFolderBusy] = useState(false);
   const [showTable, setShowTable] = useState(false);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   // データの初期化
   useEffect(() => {
-    console.log("loaderResponse", loaderResponse);
-    if (loaderResponse instanceof Error) {
+    if (readConfigResponse instanceof Error) {
       setConfig(undefined);
     } else {
-      setConfig(loaderResponse?.config as Config || undefined);
+      setConfig(readConfigResponse?.config as Config || undefined);
     }
   }, []);
 
@@ -148,24 +137,25 @@ export default function Photo() {
   };
 
   const PhotoFolderStatus = (folder: string) => {
-    const photoFolderEntry = photoFolderEntryMap.get(folder);
+
+    const photoFolderEntry = photoFolderStatusMap.get(folder);
     if (photoFolderEntry === undefined) {
+      const photofileExtensions = config?.photofileExtensions || [];
       return (<>未エントリー</>);
     }
-
+    
     if (photoFolderEntry.isBusy) {
       return (<div>読み込み中...</div>);
     }
 
-    const photos = photoFolderEntry.photos;
-    if (photos === undefined) {
+    const files = photoFolderEntry.files;
+    if (files === undefined) {
       return (<></>);
     }
 
     return (
       <div>
-        写真ファイル{photos.length}枚
-        リネーム必要ファイル{CountUnmatchedPhotos(photos)}枚
+        ファイル{files.length}枚
       </div>
     )
   }
@@ -178,31 +168,31 @@ export default function Photo() {
   // サブフォルダーのチェックボタンをクリックしたときのハンドラ
   const handlePhotoFolderCheckClick = async (folder: string) => {
     try {
-      const photoFolderEntry = photoFolderEntryMap.get(folder);
+      const photoFolderEntry = photoFolderStatusMap.get(folder);
 
       if (photoFolderEntry !== undefined) {
-        const newMap = new Map(photoFolderEntryMap);
+        const newMap = new Map(photoFolderStatusMap);
         newMap.set(folder, { ...photoFolderEntry, isBusy: true });
-        setPhotoFolderEntryMap(newMap);
+        setPhotoFolderStatusMap(newMap);
       }
 
-      let response = await GetPhotosPromise(Mode.FILE, folder);
+      let response = await GetPhotosPromise(RequestMode.FILE_MODE, folder);
       if (response instanceof Error) {
         throw response;
       }
       if (response.photos) {
         // 新しいMapを作成して状態を更新
-        const newMap = new Map(photoFolderEntryMap);
-        newMap.set(folder, { folderName: folder, photos: response.photos, isBusy: false });
-        setPhotoFolderEntryMap(newMap);
+        const newMap = new Map(photoFolderStatusMap);
+        newMap.set(folder, { folderName: folder, files: response.photos, isBusy: false });
+        setPhotoFolderStatusMap(newMap);
       }
 
-      const newMap = new Map(photoFolderEntryMap);
+      const newMap = new Map(photoFolderStatusMap);
       if (photoFolderEntry !== undefined) {
         newMap.set(folder, { ...photoFolderEntry, isBusy: false });
-        setPhotoFolderEntryMap(newMap);
+        setPhotoFolderStatusMap(newMap);
       }
-      
+
     } catch (error) {
       alert(`写真データの取得に失敗しました: ${error instanceof Error ? error.message : "不明なエラー"}`);
     }
@@ -210,7 +200,7 @@ export default function Photo() {
 
   // リネームが必要なファイルがあるかチェックする関数
   const hasUnmatchedPhotos = (folder: string): boolean => {
-    const photoState = photoFolderEntryMap.get(folder);
+    const photoState = photoFolderStatusMap.get(folder);
     if (!photoState || !photoState.photos) return false;
     return CountUnmatchedPhotos(photoState.photos) > 0;
   };
@@ -220,7 +210,7 @@ export default function Photo() {
     try {
       if (confirm("リネーム処理を実行しますか？")) {
         // リネームが必要なファイルのIDだけを取得
-        const unmatchedIds = (photoFolderEntryMap.get(folder)?.photos || [])
+        const unmatchedIds = (photoFolderStatusMap.get(folder)?.photos || [])
           .filter(photo => !IsMatchedPhoto(photo))
           .map(photo => photo.id);
 
@@ -229,12 +219,12 @@ export default function Photo() {
           return;
         }
 
-        let response = await MediafileGrpcClient.movePhotos({
-          mode: Mode.FILE,
+        let response = await GrpcMediafileClient.movePhotos({
+          mode: RequestMode.FILE_MODE,
           ids: unmatchedIds
         });
 
-        if (response.success) {
+        if (response.status === ResponseStatus.STATUS_OK) {
           alert("リネーム処理が完了しました");
           // データを更新
         }
@@ -256,11 +246,11 @@ export default function Photo() {
           <p className="text-gray-500">写真ファイル情報から保存場所を取得し整理</p>
           <br />
           <div className="status status-info animate-bounce"></div>
-          <span className="px-2">検索対象ディレクトリまたはファイル: {config?.managedPhotoPath || "コンフィギュレーションファイルの取得ができていません"}</span>
+          <span className="px-2">検索対象ディレクトリまたはファイル: {config?.managedPhotoFolder || "コンフィギュレーションファイルの取得ができていません"}</span>
 
           <Suspense fallback={<LoadingIndicator message="写真データ読み込み中．．．" />}>
             <Await
-              resolve={GetPhotoFoldersPromise(Mode.FILE)}
+              resolve={ReadFolderPromise(RequestMode.FILE_MODE)}
               errorElement={<ReviewsError />}
             >
               {(folders) => {
@@ -319,7 +309,7 @@ export default function Photo() {
         {/* {showTable && (
           <Suspense fallback={<LoadingIndicator message="写真データ読み込み中．．．" />}>
             <Await
-              resolve={GetPhotosPromise(Mode.CACHE)}
+              resolve={GetPhotosPromise(RequestMode.CACHE)}
               errorElement={<ReviewsError />}
             >
               {(photosResponse) => {
@@ -467,9 +457,9 @@ function PhotoTable({ photos }: { photos: Photo[] }) {
                           return;
                         }
 
-                        await MediafileGrpcClient.movePhotos({
+                        await GrpcMediafileClient.movePhotos({
                           ids: allPhotos.map(photo => photo.id),
-                          mode: Mode.FILE
+                          mode: RequestMode.FILE_MODE
                         });
                         alert(`${allPhotos.length}ファイルを移動しました`);
                         // 移動後にデータを更新
@@ -501,9 +491,9 @@ function PhotoTable({ photos }: { photos: Photo[] }) {
                   <button
                     onClick={async () => {
                       try {
-                        await MediafileGrpcClient.movePhotos({
+                        await GrpcMediafileClient.movePhotos({
                           ids: [photo.id],
-                          mode: Mode.FILE
+                          mode: RequestMode.FILE_MODE
                         });
                         alert(`ファイルを移動しました: ${photo.uniqueFilePath}`);
                         // 移動後にデータを更新

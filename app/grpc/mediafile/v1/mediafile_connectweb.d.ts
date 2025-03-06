@@ -3,7 +3,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { GetCamerasRequest, GetCamerasResponse, GetLogRequest, GetLogResponse, GetPhotosRequest, GetPhotosResponse, GetPhotoSubFoldersRequest, GetPhotoSubFoldersResponse, LoadCameraCacheRequest, LoadCameraCacheResponse, LoadLogRequest, LoadLogResponse, LoadPhotoCacheRequest, LoadPhotoCacheResponse, MovePhotosRequest, MovePhotosResponse, ReadConfigRequest, ReadConfigResponse, SaveCameraCacheRequest, SaveCameraCacheResponse, SaveLogRequest, SaveLogResponse, SavePhotoCacheRequest, SavePhotoCacheResponse, WriteConfigRequest, WriteConfigResponse } from "./mediafile_pb.js";
+import { GetCamerasRequest, GetCamerasResponse, GetLogRequest, GetLogResponse, GetPhotosRequest, GetPhotosResponse, LoadCameraCacheRequest, LoadCameraCacheResponse, LoadLogRequest, LoadLogResponse, LoadPhotoCacheRequest, LoadPhotoCacheResponse, MovePhotosRequest, MovePhotosResponse, ReadConfigRequest, ReadConfigResponse, ReadFolderRequest, ReadFolderResponse, SaveCameraCacheRequest, SaveCameraCacheResponse, SaveLogRequest, SaveLogResponse, SavePhotoCacheRequest, SavePhotoCacheResponse, WriteConfigRequest, WriteConfigResponse } from "./mediafile_pb.js";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -14,6 +14,17 @@ import { MethodKind } from "@bufbuild/protobuf";
 export declare const MediafileService: {
   readonly typeName: "mediafile.v1.MediafileService",
   readonly methods: {
+    /**
+     * 
+     *
+     * @generated from rpc mediafile.v1.MediafileService.ReadFolder
+     */
+    readonly readFolder: {
+      readonly name: "ReadFolder",
+      readonly I: typeof ReadFolderRequest,
+      readonly O: typeof ReadFolderResponse,
+      readonly kind: MethodKind.Unary,
+    },
     /**
      * コンフィギュレーションを読み込みます。
      *
@@ -56,17 +67,6 @@ export declare const MediafileService: {
       readonly name: "LoadPhotoCache",
       readonly I: typeof LoadPhotoCacheRequest,
       readonly O: typeof LoadPhotoCacheResponse,
-      readonly kind: MethodKind.Unary,
-    },
-    /**
-     * photo_folder以下のディレクトリを取得します。
-     *
-     * @generated from rpc mediafile.v1.MediafileService.GetPhotoSubFolders
-     */
-    readonly getPhotoSubFolders: {
-      readonly name: "GetPhotoSubFolders",
-      readonly I: typeof GetPhotoSubFoldersRequest,
-      readonly O: typeof GetPhotoSubFoldersResponse,
       readonly kind: MethodKind.Unary,
     },
     /**
