@@ -1,24 +1,20 @@
 import { useState, useEffect } from 'react';
-import { mediafileGrpcClient } from './mediafileGrpcClient';
-import { RequestMode, type GetPhotosRequest, type Photo } from "~/grpc/mediafile/v1/mediafile_pb";
+import { mediapathGrpcClient } from './mediapathGrpcClient';
+import { RequestMode } from "~/generated/grpc/v1/enum_pb";
+import { type GetPhotosRequest, type Photo } from "~/generated/grpc/v1/photo_pb";
 
-export function usePhotos(mode: RequestMode, folder: string) {
+export function usePhotos(folder: string) {
   const [photos, setPhotos] = useState<Photo[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
-  const a: GetPhotosRequest = {
-    mode: mode,
-    sourcePath: folder
-    };
-    
   useEffect(() => {
     const fetchPhotos = async () => {
       try {
         setIsLoading(true);
-        const response = await mediafileGrpcClient.getPhotos({
-          mode: mode,
-          sourcePath: folder
+        const response = await mediapathGrpcClient.getPhotos({
+          mode: RequestMode.FILE_MODE,
+          folder: folder
         });
         setPhotos(response.photos || []);
         setError(null);
@@ -30,7 +26,7 @@ export function usePhotos(mode: RequestMode, folder: string) {
     };
 
     fetchPhotos();
-  }, [mode, folder]);
+  }, [folder]);
 
   return { photos, isLoading, error };
 }
