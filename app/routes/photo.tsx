@@ -18,42 +18,45 @@ export function meta({ }: Route.MetaArgs) {
 }
 
 // ローダー関数
+// コンフィギュレーションデータを取得しGrpcサーバーが起動しているか確認する
 export async function loader({ }: LoaderFunctionArgs) {
 
   // コンフィグレーションの取得 - これは即座に解決される
   const loaderConfig =
     await mediapathGrpcClient.readConfig({ mode: RequestMode.FILE_MODE })
       .then(response => {
-        if (!response || !response.config || response instanceof Error) {
+        if (!response || !response.config) {
+          throw new Error("コンフィギュレーションデータが取得できません、ファイルアクセスに問題があると思われます。");
+        }
+        if (response instanceof Error) {
           throw response;
         }
         return response.config;
       })
       .catch(error => error instanceof Error
         ? error
-        : new Error("コンフィギュレーションデータの取得ができませんでした、GrpcServerが起動しているか確認してください。"));
+        : new Error("photo.tsxのloader関数内で原因不明のエラーが発生しました。"));
 
   return { loaderConfig };
 }
 
-const ReadFolderPromise = async (folder: string | undefined) => {
-  // if (!folder) return new Error("フォルダ名が指定されていません");
-  if (folder)
-  console.log(`ReadFolderPromise: ${folder}`);
-  
+// フォルダーを読み込む
+const readFolder = async (folder: string | undefined) => {
+  if (!folder) return new Error("引数folderが未定義です。");
+
   return await mediapathGrpcClient.readFolder({ folder }).then(response => {
     if (!response || response instanceof Error) {
       throw (response instanceof Error ? response : undefined);
     };
-    return { folderName: folder, folders: response.folders, files: response.files, busy: false } as FolderEntry;
+    return { path: folder, folders: response.folders, files: response.files, busy: false } as FolderEntry;
   }).catch(error => error instanceof Error ? error : new Error("不明なエラー"));
 }
 
-const ReadPhotoFolderPromise = async (folder: string) =>
-  await mediapathGrpcClient.getPhotos({ mode: RequestMode.FILE_MODE, folder })
+const readSubPhotoFolderEntry = async (entry: FolderEntry) =>
+  await mediapathGrpcClient.getPhotos({ mode: RequestMode.FILE_MODE, folder: entry.path })
     .then(response => {
       if (response) {
-        return response.photos;
+        return { ...entry, photos: response.photos };
       }
       throw (undefined)
     })
@@ -62,12 +65,13 @@ const ReadPhotoFolderPromise = async (folder: string) =>
 type FolderEntryMap = Map<string, FolderEntry>;
 
 type FolderEntry = {
-  folderName: string,
+  path: string,
   folders: string[],
   files: string[],
   photos: Photo[],
   busy: boolean,
 };
+
 
 
 // ファイルの移動処理
@@ -79,63 +83,68 @@ export default function Photo() {
   const [showTable, setShowTable] = useState(false);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
 
-  // データの初期化
+  // 最初に一度だけ実行されます。
   useEffect(() => {
-    if (loaderConfig instanceof Error) return;
+    if (loaderConfig instanceof Error) {
+      // エラーが発生した場合はアラートを表示してページをリロード
+      alert(`MediaPathServerが起動しているか確認してください...\nエラー内容: ${loaderConfig.stack}`);
+      window.location.reload();
+      return;
+    }
+    // if (!loaderConfig) {
+    //   alert("error")
+    //   return;
+    // }
     setConfig(loaderConfig as Config);
   }, []);
 
-  // フォルダー内のフォルダーリストのPromiseを定義
-  // 小文字で登録を行う
-  const ignores = [".cache", ".config", "test"];
-
-  const ReadManagedPhotoFolderPromise = async () =>
-    ReadFolderPromise(config.managedPhotoFolder).then(response => {
+  // 写真フォルダーを読み込み、無視リストにないフォルダーのみをフィルタリング
+  const readRootPhotoFolderEntry = async () =>
+    // フォルダーのリストを取得
+    readFolder(config.rootPhotoFolder).then(response => {
       if (response instanceof Error) throw response;
 
-
       // 無視リストにないフォルダのみをフィルタリング
-      const photoFolders = response.folders.filter(folder => {
+      const folders = response.folders.filter(folder => {
         const folderName = folder.split("/").pop()?.toLowerCase() || "";
-        return !ignores.some(ignore => folderName.includes(ignore));
+        return !IGNORE_FOLDER_NAMES.some(ignore => folderName.includes(ignore));
       });
 
-      const newMap = new Map(photoFolderEntryMap);
-      for (const folder of photoFolders) {
-        newMap.set(folder, { folderName: folder, folders: [], files: [], photos: [], busy: false });
+      const entries: FolderEntry[] = [];
+      for (const path of folders) {
+        entries.push({ path, folders: [], files: [], photos: [], busy: false });
       }
+      // 下記を実行すると、Suspense/AwaitとUseStateの競合が発生する
       // setPhotoFolderEntryMap(newMap);
 
-      return photoFolders;
+      // フォルダーのリストを返す
+      return entries;
+
     });
+  // フォルダー内のフォルダーリストのPromiseを定義
+  // 小文字で登録を行う
+  const IGNORE_FOLDER_NAMES = [".cache", ".config", "test"];
 
+  // サブフォルダーのステータスを表示する関数
+  const ReviewsSubFolderEntry = (entry: FolderEntry) => {
 
-  const PhotoFolderStatus = (folder: string) => {
-
-    const photoFolderEntry = photoFolderEntryMap.get(folder);
-    if (photoFolderEntry === undefined) {
+    if (entry === undefined) {
       const photofileExtensions = config?.photofileExtensions || [];
-      return (<>未エントリー</>);
+      return (<>チェックをクリック</>);
     }
 
-    if (photoFolderEntry.busy) {
+    if (entry.busy) {
       return (<div>読み込み中...</div>);
-    }
-
-    const photos = photoFolderEntry.photos;
-    if (photos === undefined) {
-      return (<></>);
     }
 
     return (
       <div>
-        ファイル{photos.length}枚:
-        {photoFolderEntry.busy && <>読み込み中</>}
-        {!photoFolderEntry.busy && <>完了</>}
+        ファイル{entry.photos ? entry.photos.length : "-"}枚:
       </div>
     )
   }
 
+  // エラー表示
   const ReviewsError = () => {
     const error = useAsyncError() as Error;
     return (<span className="text-red-500">{error.message}</span>);
@@ -143,26 +152,22 @@ export default function Photo() {
 
   // サブフォルダーのチェックボタンをクリックしたときのハンドラ
   // 指定されたフォルダ内の全写真ファイル情報を取得する
-  const onClickPhotoFolderCheck = async (folder: string) => {
-
-    // 既存のフォルダー情報を取得
-    const photoFolderEntry = photoFolderEntryMap.get(folder);
-
-    if (photoFolderEntry) {
-      const photos = await ReadPhotoFolderPromise(folder);
-      if (photos instanceof Error == false) {
-        setPhotoFolderEntryMap(prev => prev.set(folder, { ...photoFolderEntry, photos }));
-        console.log(`写真ファイルの取得しました: ${photos.length}枚`);
-        alert(`写真ファイルの取得しました: ${photos.length}枚`);
-        return;
-      }
-      alert(`写真ファイルの取得に失敗しました: ${photos.message}`);
+  const clickSubFolderCheck = async (entry: FolderEntry) => {
+    const newEntry = await readSubPhotoFolderEntry(entry);
+    if (newEntry instanceof Error) {
+      alert(`写真ファイルの取得に失敗しました: ${newEntry.message}`);
+    } else {
+      const newMap = new Map(photoFolderEntryMap);
+      newMap.set(entry.path, newEntry);
+      setPhotoFolderEntryMap(newMap);
+      console.log(`写真ファイルの取得しました: ${newEntry.photos.length}枚`);
+      return;
     }
   }
 
   // リネームが必要なファイルがあるかチェックする関数
-  const hasUnmatchedPhotos = (folder: string): boolean => {
-    const photoState = photoFolderEntryMap.get(folder);
+  const hasUnmatchedPhotos = (entry: FolderEntry): boolean => {
+    const photoState = photoFolderEntryMap.get(entry.path);
     if (!photoState || !photoState.photos) return false;
     return CountUnmatchedPhotos(photoState.photos) > 0;
   };
@@ -174,27 +179,29 @@ export default function Photo() {
   };
 
 
-  function SetPhotoFolderBusy(folder: string, busy: boolean) {
+  function SetPhotoFolderEntryBusy(entry: FolderEntry, busy: boolean) {
 
     // 既存のフォルダー情報を取得
-    const photoFolderEntry = photoFolderEntryMap.get(folder);
+    const photoFolderEntry = photoFolderEntryMap.get(entry.path);
     if (photoFolderEntry) {
-      setPhotoFolderEntryMap(prev => prev.set(folder, { ...photoFolderEntry, busy: busy }));
+      const newMap = new Map(photoFolderEntryMap);
+      newMap.set(entry.path, { ...photoFolderEntry, busy: busy });
+      setPhotoFolderEntryMap(newMap);
     }
   }
 
   // フォルダー内の全ファイルの移動処理
-  const onClickMovePhotos = async (folder: string) => {
-    SetPhotoFolderBusy(folder, true);
+  const clickMovePhotos = async (entry: FolderEntry) => {
+    SetPhotoFolderEntryBusy(entry, true);
     try {
       if (confirm("リネーム処理を実行しますか？")) {
         // リネームが必要なファイルのIDだけを取得
-        const unmatchedIds = (photoFolderEntryMap.get(folder)?.photos || [])
+        const unmatchedIds = (photoFolderEntryMap.get(entry.path)?.photos || [])
           .filter(photo => !IsMatchedPhoto(photo))
           .map(photo => photo.id);
 
         if (unmatchedIds.length === 0) {
-          SetPhotoFolderBusy(folder, false);
+          SetPhotoFolderEntryBusy(entry, false);
           return;
         }
 
@@ -212,7 +219,12 @@ export default function Photo() {
     } catch (error) {
       alert(`リネーム処理に失敗しました: ${error instanceof Error ? error.message : "不明なエラー"}`);
     }
-    SetPhotoFolderBusy(folder, false);
+    SetPhotoFolderEntryBusy(entry, false);
+  }
+
+  // フォルダー名を取得する
+  function getFolderName(path: string): string {
+    return "/" + path.split("/").pop() || "";
   }
 
   return (
@@ -225,43 +237,45 @@ export default function Photo() {
           <p className="text-gray-500">写真ファイル情報から保存場所を取得し整理</p>
           <br />
           <div className="status status-info animate-bounce"></div>
-          <span className="px-2">検索対象ディレクトリまたはファイル: {config?.managedPhotoFolder || "コンフィギュレーションファイルの取得ができていません"}</span>
+          <span className="px-2">検索対象ディレクトリまたはファイル: {config?.rootPhotoFolder || "コンフィギュレーションファイルの取得ができていません"}</span>
 
           <Suspense fallback={<LoadingIndicator message="写真データ読み込み中．．．" />}>
             <Await
-              resolve={ReadManagedPhotoFolderPromise()}
+              resolve={readRootPhotoFolderEntry()}
               errorElement={<ReviewsError />}
             >
-              {(folders) => {
-                if (folders instanceof Error) return null;
+              {(entries) => {
+                if (!entries) return null;
                 return (
                   <>
                     <table className="table">
                       <thead>
                         <tr>
                           <th className="px-3 py-1">No</th>
-                          <th className="px-3 py-1">Folder</th>
+                          <th className="px-3 py-1">Root</th>
+                          <th className="px-3 py-1">Sub Folder</th>
                           <th className="px-3 py-1">Check</th>
                           <th className="px-3 py-1">Status</th>
                           <th className="px-3 py-1">Move</th>
                         </tr>
                       </thead>
                       <tbody>
-                        {folders.map((folder, index) => (
+                        {entries.map((entry, index) => (
                           <tr key={index} className="border-b border-gray-200">
                             <td className="px-3 py-1">{index + 1}</td>
-                            <td className="px-3 py-1">{folder}</td>
+                            <td className="px-3 py-1">{config.rootPhotoFolder}</td>
+                            <td className="px-3 py-1">{getFolderName(entry.path)}</td>
                             <td className="px-3 py-1">
-                              <button className="btn btn-primary" onClick={async () => onClickPhotoFolderCheck(folder)}>
+                              <button className="btn btn-primary" onClick={async () => clickSubFolderCheck(entry)}>
                                 チェック
                               </button>
                             </td>
-                            <td className="px-3 py-1">{PhotoFolderStatus(folder)}</td>
+                            <td className="px-3 py-1">{ReviewsSubFolderEntry(entry)}</td>
                             <td className="px-3 py-1">
                               <button
                                 className="btn btn-primary"
-                                disabled={!hasUnmatchedPhotos(folder)}
-                                onClick={async () => onClickMovePhotos(folder)}
+                                disabled={!hasUnmatchedPhotos(entry)}
+                                onClick={async () => clickMovePhotos(entry)}
                               >
                                 移動
                               </button>
